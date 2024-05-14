@@ -1,0 +1,215 @@
+@import "colours";
+
+$spawn-height: 80;
+$spawn-width: 100;
+
+.body {
+
+}
+
+#background {
+  height: 200vh !important;
+  //background: radial-gradient(ellipse at bottom, #1b1f26 0%, #000000 100%);
+  overflow: auto !important;
+  padding: 0;
+  margin: 0;
+  animation: background auto linear;
+  animation-timeline: scroll();
+}
+
+@media only screen and (max-width: 1200px) {
+
+}
+
+@media only screen and (max-width: 600px) {
+
+}
+
+#brackets {
+  color: red;
+  position: absolute;
+  top: random($spawn-height) + vh;
+  left: random($spawn-width) + vw;
+  width: 512px;
+  height: 512px;
+  background-image: url("brackets_white.png");
+  transform-origin: top left;
+  transform: scale(0) rotate(0deg) translate(-50%, -50%);
+  animation: brackets 12s ease-in forwards infinite;
+  overflow: hidden;
+
+  &:nth-child(1) {
+    animation-delay: 2s;
+    top: random($spawn-height) + vh;
+    left: random($spawn-width) + vw;
+  }
+
+  &:nth-child(2) {
+    animation-delay: 4s;
+    top: random($spawn-height) + vh;
+    left: random($spawn-width) + vw;
+  }
+
+  &:nth-child(3) {
+    animation-delay: 6s;
+    top: random($spawn-height) + vh;
+    left: random($spawn-width) + vw;
+  }
+
+  &:nth-child(4) {
+    animation-delay: 8s;
+    top: random($spawn-height) + vh;
+    left: random($spawn-width) + vw;
+  }
+
+  &:nth-child(5) {
+    animation-delay: 10s;
+    top: random($spawn-height) + vh;
+    left: random($spawn-width) + vw;
+  }
+}
+
+@keyframes brackets {
+  from {
+    transform: scale(0) rotate(0deg) translate(-50%, -50%);
+    opacity: 0.1;
+  }
+  to {
+    transform: scale(1) rotate(180deg) translate(-50%, -50%);
+    opacity: 0;
+  }
+}
+
+svg {
+  font-family: 'Lucida Console', Monaco, monospace;
+}
+
+svg text {
+  text-transform: uppercase;
+  stroke-width: 2;
+  stroke: #365fa0;
+  font-size: 140px;
+}
+
+#flyers {
+  color: red;
+  position: absolute;
+  top: 20vh;
+  left: 20vw;
+  transform-origin: center center;
+  transform: scale(2) rotate(180deg);
+  animation: icon 12s ease-in forwards infinite;
+  overflow: hidden;
+
+  &:nth-child(1) {
+    animation-delay: 2s;
+    top: random($spawn-height) + vh;
+    left: random($spawn-width) + vw;
+  }
+}
+
+@keyframes flyers {
+  from {
+    transform: scale(0) rotate(0deg) translate(-50%, -50%);
+    opacity: 0.1;
+  }
+  to {
+    transform: scale(1) rotate(180deg) translate(-50%, -50%);
+    opacity: 0;
+  }
+}
+
+@keyframes background {
+  from {
+    background-color: #1b1f26;
+  }
+  to {
+    background-color: #000000;
+  }
+}
+
+#title-area {
+  margin: 40vh auto auto auto;
+  //width: auto;
+  //justify-content: center;
+}
+
+.typewriter {
+  margin: 0 auto;
+  color: $white;
+  overflow: hidden;
+  white-space: nowrap;
+  letter-spacing: .15em;
+
+  &:nth-child(1) {
+    width: 2em;
+    animation: type-start 0.3s steps(3, end);
+    animation-fill-mode: forwards;
+  }
+
+  &:nth-child(2) {
+    opacity: 0;
+    width: 11.4em;
+    animation: type-middle 1.5s steps(15, end);
+    animation-delay: 0.4s;
+    animation-fill-mode: forwards;
+  }
+
+  &:nth-child(3) {
+    opacity: 0;
+    width: 29.8em;
+    animation: type-end 2s steps(20, end), blink-effect 1.5s step-end infinite;
+    animation-delay: 2s;
+    animation-fill-mode: forwards;
+  }
+}
+
+@keyframes type-start {
+  0% {
+    width: 0;
+  }
+  99.9% {
+    border-right: 0.5em solid $white;
+  }
+  100% {
+    border: none;
+  }
+}
+
+@keyframes type-middle {
+  0% {
+    width: 0;
+  }
+  1% {
+    opacity: 1;
+  }
+  99.9% {
+    border-right: 0.5em solid $white;
+  }
+  100% {
+    opacity: 1;
+    border: none;
+  }
+}
+
+@keyframes type-end {
+  0% {
+    width: 0;
+  }
+  1% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    border-right: 0.5em solid $white;
+  }
+}
+
+@keyframes blink-effect {
+  from, to {
+    border-color: transparent
+  }
+  50% {
+    border-color: $white;
+  }
+}
