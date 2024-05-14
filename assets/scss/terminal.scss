@@ -1,0 +1,165 @@
+#terminal-bar {
+  margin: 40vh auto auto auto;
+  width: 40em;
+  height: 1.8em;
+  background-color: $background-accent-dark;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+
+  .terminal-buttons {
+    height: 1.4em;
+    width: 1.4em;
+    border-radius: 50%;
+    position: relative;
+    left: 0.2em;
+    top: 0.2em;
+    margin-inline: 0.1em;
+    background-color: $background-accent;
+    border: 1px solid $blacksmoke;
+    display: inline-block;
+  }
+}
+
+#terminal-window {
+  margin: 0 auto;
+  background-color: $black;
+  width: 40em;
+  padding-block: 20px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+
+  h1 {
+    font-size: 3em;
+    line-height: 1.2em;
+    color: white;
+    font-family: 'Lucida Console', Monaco, monospace;
+  }
+
+  h3 {
+    font-size: 1.2em;
+    line-height: 1.2em;
+    color: white;
+    font-family: 'Lucida Console', Monaco, monospace;
+  }
+}
+
+.typewriter {
+  margin: 0 10px;
+  color: $white;
+  overflow: hidden;
+  white-space: nowrap;
+  letter-spacing: .15em;
+
+  &:nth-child(1) {
+    width: 2em;
+    animation: type-start 0.3s steps(3, end);
+    animation-fill-mode: forwards;
+  }
+
+  &:nth-child(2) {
+    opacity: 0;
+    width: 11.4em;
+    animation: type-middle 1.5s steps(15, end);
+    animation-delay: 0.4s;
+    animation-fill-mode: forwards;
+  }
+
+  &:nth-child(3) {
+    opacity: 0;
+    width: 29.8em;
+    animation: type-middle 1.5s steps(15, end);
+    animation-delay: 2s;
+    animation-fill-mode: forwards;
+  }
+
+  &:nth-child(4) {
+    opacity: 0;
+    width: 1.4em;
+    animation: type-end 0.1s steps(1, end), blink-effect 1.5s step-end infinite;
+    animation-delay: 3.6s;
+    animation-fill-mode: forwards;
+  }
+}
+
+@keyframes type-start {
+  0% {
+    width: 0;
+  }
+  99.9% {
+    border-right: 0.5em solid $white;
+  }
+  100% {
+    border: none;
+  }
+}
+
+@keyframes type-middle {
+  0% {
+    width: 0;
+  }
+  1% {
+    opacity: 1;
+  }
+  99.9% {
+    border-right: 0.5em solid $white;
+  }
+  100% {
+    opacity: 1;
+    border: none;
+  }
+}
+
+@keyframes type-end {
+  0% {
+    width: 0;
+  }
+  1% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    border-right: 0.5em solid $white;
+  }
+}
+
+@keyframes blink-effect {
+  from, to {
+    border-color: transparent
+  }
+  50% {
+    border-color: $white;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+
+}
+
+@media only screen and (max-width: 600px) {
+  #terminal-bar {
+    margin: 20vh auto auto auto;
+    width: 20em;
+    height: 1.4em;
+
+    .terminal-buttons {
+      height: 1em;
+      width: 1em;
+      left: 0.1em;
+      top: 0.1em;
+      margin-inline: 0.1em;
+      border: 1px solid $blacksmoke;
+    }
+  }
+
+  #terminal-window {
+    width: 20em;
+
+    h1 {
+      font-size: 1em;
+    }
+
+    h3 {
+      font-size: 0.6em;
+    }
+  }
+}
