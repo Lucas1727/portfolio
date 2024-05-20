@@ -4,7 +4,9 @@ $spawn-width: 100;
 #background {
   height: 200vh !important;
   //background: radial-gradient(ellipse at bottom, #1b1f26 0%, #000000 100%);
-  overflow: auto !important;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  //overflow: auto !important;
   padding: 0;
   margin: 0;
   animation: background auto linear;
@@ -107,7 +109,7 @@ svg text {
 
 @keyframes background {
   from {
-    background-color: #1b1f26;
+    background-color: $background-accent;
   }
   to {
     background-color: #000000;

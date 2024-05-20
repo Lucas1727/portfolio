@@ -3,7 +3,7 @@
     <v-app-bar id="v-app-bar" density="compact" :elevation="10">
 
       <v-spacer></v-spacer>
-      <v-app-bar-title>{{ getDate() }}</v-app-bar-title>
+      <v-app-bar-title>{{ date }}</v-app-bar-title>
 
       <template v-slot:append>
         <v-btn icon="mdi-wifi"></v-btn>
@@ -27,12 +27,22 @@ export default {
     return {}
   },
   data() {
-    return {}
+    return {
+      date: ''
+    }
   },
   methods: {
     getDate() {
       return getDateString(Date.now(), 'DD MMMM HH:mm')
     }
+  },
+  created() {
+    this.date = this.getDate()
+  },
+  mounted() {
+    this.interval = setInterval(() => {
+      this.date = this.getDate()
+    }, 10000)
   },
 }
 </script>
