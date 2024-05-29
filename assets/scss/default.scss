@@ -1,11 +1,14 @@
 @import "colours";
+@import "apps";
 @import "background";
+@import "navbar";
 @import "taskbar";
 @import "terminal";
 
 #v-app-bar {
   color: $white;
   background-color: $background-colour-dark;
+  position: static;
 
   .v-app-bar-title {
     font-size: 1em;

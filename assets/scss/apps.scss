@@ -1,0 +1,11 @@
+.app {
+  height: 6em;
+  width: 6em;
+  position: absolute;
+  text-align: center;
+  background-color: $background-accent-dark;
+  border-radius: 10px;
+  display: flex;
+  cursor: move;
+  z-index: 10;
+}

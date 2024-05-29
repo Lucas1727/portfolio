@@ -1,16 +1,19 @@
 <template>
   <v-app>
-    <v-app-bar id="v-app-bar" density="compact" :elevation="10">
+    <!--    <v-app-bar id="v-app-bar" density="compact" color="transparent" :elevation="10"></v-app-bar>-->
 
+    <v-toolbar id="navbar" density="compact" absolute>
       <v-spacer></v-spacer>
-      <v-app-bar-title>{{ date }}</v-app-bar-title>
+      <v-toolbar-title>
+        {{ date }}
+      </v-toolbar-title>
 
       <template v-slot:append>
         <v-btn icon="mdi-wifi"></v-btn>
         <v-btn icon="mdi-volume-high"></v-btn>
         <v-btn icon="mdi-power"></v-btn>
       </template>
-    </v-app-bar>
+    </v-toolbar>
 
     <v-main>
       <slot/>
