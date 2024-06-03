@@ -1,4 +1,4 @@
-#terminal {
+#settings {
   top: 40vh;
   width: 40em;
   left: calc(50vw - 20em);
@@ -6,9 +6,9 @@
   z-index: 9;
   text-align: center;
   opacity: 0;
-  animation: maximize 0.25s linear forwards;
+  //animation: maximize 0.25s linear forwards;
 
-  #terminal-navbar {
+  #settings-navbar {
     height: 1.8em;
     background-color: $background-accent-dark;
     border-top-right-radius: 10px;
@@ -17,7 +17,7 @@
     cursor: move;
     z-index: 10;
 
-    .terminal-buttons {
+    .settings-buttons {
       height: 1.4em;
       width: 1.4em;
       border-radius: 50%;
@@ -32,7 +32,7 @@
     }
   }
 
-  #terminal-body {
+  #settings-body {
     margin: 0 auto;
     background-color: $black-transparent;
     padding-block: 20px;
@@ -77,113 +77,19 @@
   }
 }
 
-.typewriter {
-  margin: 0 10px;
-  color: $white;
-  overflow: hidden;
-  white-space: nowrap;
-  letter-spacing: .15em;
-
-  &:nth-child(1) {
-    opacity: 0;
-    width: 2em;
-    animation: type-start 0.3s steps(3, end);
-    animation-delay: 1s;
-    animation-fill-mode: forwards;
-  }
-
-  &:nth-child(2) {
-    opacity: 0;
-    width: 11.4em;
-    animation: type-middle 1.5s steps(15, end);
-    animation-delay: 1.4s;
-    animation-fill-mode: forwards;
-  }
-
-  &:nth-child(3) {
-    opacity: 0;
-    width: 29.2em;
-    animation: type-middle 1.5s steps(15, end);
-    animation-delay: 3s;
-    animation-fill-mode: forwards;
-  }
-
-  &:nth-child(4) {
-    opacity: 0;
-    width: 1.4em;
-    animation: type-end 0.2s steps(1, end), blink-effect 1.5s step-end infinite;
-    animation-delay: 4.6s;
-    animation-fill-mode: forwards;
-  }
-}
-
-@keyframes type-start {
-  0% {
-    width: 0;
-  }
-  1% {
-    opacity: 1;
-  }
-  99.9% {
-    border-right: 0.5em solid $white;
-  }
-  100% {
-    opacity: 1;
-    border: none;
-  }
-}
-
-@keyframes type-middle {
-  0% {
-    width: 0;
-  }
-  1% {
-    opacity: 1;
-  }
-  99.9% {
-    border-right: 0.5em solid $white;
-  }
-  100% {
-    opacity: 1;
-    border: none;
-  }
-}
-
-@keyframes type-end {
-  0% {
-    width: 0;
-  }
-  1% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 1;
-    border-right: 0.5em solid $white;
-  }
-}
-
-@keyframes blink-effect {
-  from, to {
-    border-color: transparent
-  }
-  50% {
-    border-color: $white;
-  }
-}
-
 @media only screen and (max-width: 1200px) {
 
 }
 
 @media only screen and (max-width: 600px) {
-  #terminal {
+  #settings {
     top: 10vh;
 
-    #terminal-navbar {
+    #settings-navbar {
       width: 20em;
       height: 1.4em;
 
-      .terminal-buttons {
+      .settings-buttons {
         height: 1em;
         width: 1em;
         right: 0.2em;
@@ -193,7 +99,7 @@
       }
     }
 
-    #terminal-body {
+    #settings-body {
       width: 20em;
 
       h1 {

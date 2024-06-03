@@ -13,6 +13,7 @@
     height: 3em;
     background-color: $black-transparent;
     border-radius: 10px;
+    animation: startup 1s ease-in;
 
     .task-icons {
       width: 5em;
@@ -23,6 +24,15 @@
 
     .task-icons:hover {
       transform: scale(2);
+    }
+
+    @keyframes startup {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
     }
   }
 }
