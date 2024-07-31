@@ -7,41 +7,61 @@ export const getDateString = function (date: number, format: string = 'DD-MM-YYY
   return moment(date).format(format)
 }
 
+let winX = 0, winY = 0, mouseX = 0, mouseY = 0;
+
+export let openElements: HTMLElement[] = [];
+
 export const dragElement = function (htmlElement: HTMLElement) {
-  let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
 
-  if (document.getElementById(htmlElement.id + "-navbar")) {
-    document.getElementById(htmlElement.id + "-navbar").onmousedown = dragMouseDown;
-  } else {
-    htmlElement.onmousedown = dragMouseDown;
-  }
+  const element = document.getElementById(htmlElement.id + "-navbar");
 
-  function dragMouseDown(element) {
-    element = element || window.event;
-    element.preventDefault();
+  if (element) element!!.onmousedown = dragMouseDown; else htmlElement.onmousedown = dragMouseDown;
 
-    pos3 = element.clientX;
-    pos4 = element.clientY;
+  function dragMouseDown(mouseEvent: MouseEvent) {
+    mouseEvent = mouseEvent || window.event;
+    mouseEvent.preventDefault();
+
+    mouseX = mouseEvent.clientX;
+    mouseY = mouseEvent.clientY;
+
     document.onmouseup = closeDragElement;
-
     document.onmousemove = elementDrag;
   }
 
-  function elementDrag(element) {
-    element = element || window.event;
-    element.preventDefault();
+  function elementDrag(mouseEvent: MouseEvent) {
+    mouseEvent = mouseEvent || window.event;
+    mouseEvent.preventDefault();
 
-    pos1 = pos3 - element.clientX;
-    pos2 = pos4 - element.clientY;
-    pos3 = element.clientX;
-    pos4 = element.clientY;
+    winX = mouseX - mouseEvent.clientX;
+    winY = mouseY - mouseEvent.clientY;
+    mouseX = mouseEvent.clientX;
+    mouseY = mouseEvent.clientY;
 
-    htmlElement.style.top = (htmlElement.offsetTop - pos2) + "px";
-    htmlElement.style.left = (htmlElement.offsetLeft - pos1) + "px";
+    htmlElement.style.left = (htmlElement.offsetLeft - winX) + "px";
+    htmlElement.style.top = (htmlElement.offsetTop - winY) + "px";
+
+    bringToFront(htmlElement);
   }
 
   function closeDragElement() {
     document.onmouseup = null;
     document.onmousemove = null;
   }
+}
+
+export const resetElement = function (htmlElement: HTMLElement) {
+
+  winX = (window.innerWidth / 2) - (htmlElement.offsetWidth / 2);
+  winY = (window.innerHeight / 2) - (htmlElement.offsetHeight / 2);
+
+  htmlElement.style.left = winX + "px";
+  htmlElement.style.top = winY + "px";
+}
+
+export const bringToFront = function (htmlElement: HTMLElement) {
+  htmlElement.style.zIndex = "8";
+
+  openElements.forEach((app) => {
+    if (app.id !== htmlElement.id) app.style.zIndex = "7";
+  });
 }

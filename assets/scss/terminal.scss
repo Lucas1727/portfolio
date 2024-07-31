@@ -3,7 +3,7 @@
   width: 40em;
   left: calc(50vw - 20em);
   position: absolute;
-  z-index: 9;
+  z-index: 7;
   text-align: center;
   opacity: 0;
   animation: maximize 0.25s linear forwards;
@@ -72,6 +72,16 @@
     to {
       opacity: 0;
       top: 90vh;
+      transform: scale(0);
+    }
+  }
+
+  @keyframes close {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
       transform: scale(0);
     }
   }
@@ -178,9 +188,10 @@
 @media only screen and (max-width: 600px) {
   #terminal {
     top: 10vh;
+    width: 20em;
+    left: calc(50vw - 10em);
 
     #terminal-navbar {
-      width: 20em;
       height: 1.4em;
 
       .terminal-buttons {

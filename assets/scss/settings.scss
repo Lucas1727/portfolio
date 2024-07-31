@@ -3,7 +3,7 @@
   width: 40em;
   left: calc(50vw - 20em);
   position: absolute;
-  z-index: 9;
+  z-index: 7;
   text-align: center;
   opacity: 0;
   //animation: maximize 0.25s linear forwards;
@@ -75,6 +75,16 @@
       transform: scale(0);
     }
   }
+
+  @keyframes close {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+      transform: scale(0);
+    }
+  }
 }
 
 @media only screen and (max-width: 1200px) {
@@ -83,10 +93,11 @@
 
 @media only screen and (max-width: 600px) {
   #settings {
-    top: 10vh;
+    top: 30vh;
+    width: 20em;
+    left: calc(50vw - 10em);
 
     #settings-navbar {
-      width: 20em;
       height: 1.4em;
 
       .settings-buttons {

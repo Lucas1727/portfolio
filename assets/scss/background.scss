@@ -41,7 +41,7 @@ $total: 10;
           opacity: 0.2;
         }
         to {
-          transform: scale((random(5) / 10) + 0.5) rotate(random(360) + deg) translate(-50%, -50%);
+          transform: scale(calc(random(5) / 10) + 0.5) rotate(random(360) + deg) translate(-50%, -50%);
           opacity: 0;
         }
       }
@@ -69,13 +69,13 @@ $total: 10;
     @keyframes fly#{$fly} {
       from {
         top: 150%;
-        transform: scale((random(5) / 10) + 0.5) rotate(random(360) + deg) translate(-50%, -50%);
+        transform: scale(calc(random(5) / 10) + 0.5) rotate(random(360) + deg) translate(-50%, -50%);
         opacity: 0.2;
       }
       to {
         opacity: 0;
         top: -50%;
-        transform: scale((random(5) / 10) + 0.5) rotate(random(360) + deg) translate(-50%, -50%);
+        transform: scale(calc(random(5) / 10) + 0.5) rotate(random(360) + deg) translate(-50%, -50%);
       }
     }
   }

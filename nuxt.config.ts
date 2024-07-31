@@ -1,4 +1,3 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
 
   app: {
@@ -30,13 +29,34 @@ export default defineNuxtConfig({
     '~/assets/scss/global.scss'
   ],
 
-  devtools: {enabled: true},
+  devtools: {enabled: false},
 
   modules: [
     '@nuxtjs/color-mode'
   ],
 
+  routeRules: {
+    '*': {sitemap: {changefreq: 'daily', priority: 0.3}},
+    '*/*': {sitemap: {changefreq: 'daily', priority: 0.3}}
+  },
+
   runtimeConfig: {
     public: {}
-  }
+  },
+
+  schemaOrg: {
+    enabled: false
+  },
+
+  site: {
+    defaultLocale: 'en',
+  },
+
+  ssr: false,
+
+  vite: {
+    define: {
+      'process.env.DEBUG': false,
+    },
+  },
 })

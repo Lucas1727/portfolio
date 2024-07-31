@@ -1,9 +1,8 @@
 {
-  "name": "nuxt-app",
+  "name": "portfolio",
   "private": true,
-  "type": "module",
   "scripts": {
-    "build": "nuxt build",
+    "build": "nuxt build --prerender",
     "dev": "nuxt dev --host 0.0.0.0",
     "generate": "nuxt generate",
     "preview": "nuxt preview",

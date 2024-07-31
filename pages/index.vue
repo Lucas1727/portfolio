@@ -11,9 +11,9 @@
     <div id="settings">
       <div id=settings-navbar>
         <v-spacer></v-spacer>
-        <div @click="toggleTerminal" class="settings-buttons" style="background-color: #5ac846"></div>
-        <div @click="toggleTerminal" class="settings-buttons" style="background-color: #f0c828"></div>
-        <div @click="toggleTerminal" class="settings-buttons" style="background-color: #f0645a"></div>
+        <div @click="toggleWindow('settings')" class="settings-buttons" style="background-color: #5ac846"></div>
+        <div @click="" class="settings-buttons" style="background-color: #f0c828"></div>
+        <div @click="closeWindow('settings')" class="settings-buttons" style="background-color: #f0645a"></div>
       </div>
 
       <div id="settings-body">
@@ -26,9 +26,9 @@
     <div id="terminal">
       <div id=terminal-navbar>
         <v-spacer></v-spacer>
-        <div @click="toggleTerminal" class="terminal-buttons" style="background-color: #5ac846"></div>
-        <div @click="toggleTerminal" class="terminal-buttons" style="background-color: #f0c828"></div>
-        <div @click="toggleTerminal" class="terminal-buttons" style="background-color: #f0645a"></div>
+        <div @click="toggleWindow('terminal')" class="terminal-buttons" style="background-color: #5ac846"></div>
+        <div @click="" class="terminal-buttons" style="background-color: #f0c828"></div>
+        <div @click="closeWindow('terminal')" class="terminal-buttons" style="background-color: #f0645a"></div>
       </div>
 
       <div id="terminal-body">
@@ -55,7 +55,7 @@
 </template>
 
 <script>
-import {dragElement} from "assets/ts/methods.ts";
+import {bringToFront, dragElement, openElements, resetElement} from "assets/ts/methods.ts";
 
 export default {
   setup() {
@@ -70,14 +70,34 @@ export default {
         {name: 'Settings', image: 'settings.svg', height: '3em', bottom: '1.6em'},
       ],
       backgrounds: ['kotlin.svg', 'java.svg', 'mysql.svg', 'terminal.svg'],
-      viewTerminal: true,
-      viewSettings: false,
       ready: false,
       fly: false,
       zoom: false,
     }
   },
   methods: {
+    closeWindow(app) {
+      const element = document.getElementById(app);
+      if (openElements.includes(element)) {
+        delete openElements[openElements.indexOf(element)];
+        element.style.animation = "close 0.1s linear forwards";
+        setTimeout(() => {
+          resetElement(element);
+        }, 100);
+      }
+    },
+    loadElements() {
+      dragElement(document.getElementById("app1"));
+      dragElement(document.getElementById("app2"));
+      dragElement(document.getElementById("terminal"));
+      dragElement(document.getElementById("settings"));
+
+      openElements.push(document.getElementById('terminal'));
+    },
+    taskBarClick(item) {
+      if (item === 'Terminal') this.toggleWindow('terminal');
+      else if (item === 'Settings') this.toggleWindow('settings');
+    },
     toggleZoom() {
       this.fly = false;
       this.zoom = true;
@@ -86,39 +106,22 @@ export default {
       this.fly = true;
       this.zoom = false;
     },
-    toggleTerminal() {
-      if (this.viewTerminal) {
-        this.viewTerminal = false;
-        document.getElementById('terminal').style.animation = "minimize 0.25s linear forwards";
+    toggleWindow(app) {
+      const element = document.getElementById(app);
+      if (openElements.includes(element)) {
+        delete openElements[openElements.indexOf(element)];
+        element.style.animation = "minimize 0.25s linear forwards";
       } else {
-        this.viewTerminal = true;
-        document.getElementById('terminal').style.animation = "maximize 0.25s linear forwards";
+        openElements.push(element);
+        bringToFront(element);
+        element.style.animation = "maximize 0.25s linear forwards";
       }
     },
-    toggleSettings() {
-      if (this.viewSettings) {
-        this.viewSettings = false;
-        document.getElementById('settings').style.animation = "minimize 0.25s linear forwards";
-      } else {
-        this.viewSettings = true;
-        document.getElementById('settings').style.animation = "maximize 0.25s linear forwards";
-      }
-    },
-    taskBarClick(item) {
-      if (item === 'Terminal') {
-        this.toggleTerminal();
-      } else if (item === 'Settings') {
-        this.toggleSettings();
-      }
-    }
   },
   mounted() {
     this.toggleZoom();
-    dragElement(document.getElementById("app1"));
-    dragElement(document.getElementById("app2"));
-    dragElement(document.getElementById("terminal"));
-    dragElement(document.getElementById("settings"));
+    this.loadElements();
     this.ready = true;
-  },
+  }
 }
 </script>
