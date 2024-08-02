@@ -5,8 +5,12 @@
     <v-img v-if="fly" v-for="item in backgrounds" :src="item" height="256" width="256" class="fly"></v-img>
     <v-img v-if="zoom" v-for="item in backgrounds" :src="item" height="256" width="256" class="zoom"></v-img>
 
-    <div id="app1" class="app" style="top: 8vh; calc(5vw - 6em);"></div>
-    <div id="app2" class="app" style="top: 20vh; calc(5vw - 6em);"></div>
+    <div id="cv-app" class="app" style="top: 6vh; calc(5vw - 6em);">
+      <div id=cv-label></div>
+    </div>
+
+    <div id="terminal-app" class="app" @click="openWindow('terminal')" style="top: 16vh; calc(5vw - 6em);"></div>
+    <div id="settings-app" class="app" @click="openWindow('settings')" style="top: 24vh; calc(5vw - 6em);"></div>
 
     <div id="settings">
       <div id=settings-navbar>
@@ -43,7 +47,7 @@
 
     <v-footer v-if="ready" color="transparent">
       <div id="task-bar">
-        <v-img v-for="item in apps" :key="item" class="task-icons" :src="item.image" :style="`height: ${item.height}; bottom: ${item.bottom}`" @click="taskBarClick(item.name)">
+        <v-img v-for="item in currentApps" :key="item" class="task-icons" :src="item.image" :style="`height: ${item.height}; bottom: ${item.bottom}`" @click="taskBarClick(item.name)">
           <v-tooltip activator="parent" location="bottom" open-delay="500">{{ item.name }}</v-tooltip>
           <template v-slot:placeholder>
             <div class="d-flex align-center justify-center fill-height">
@@ -68,13 +72,19 @@ export default {
         // {name: 'Kotlin', image: 'kotlin.svg', height: '2.6em', bottom: '2em'},
         // {name: 'Java', image: 'java.svg', height: '3em', bottom: '2.2em'},
         // {name: 'MySQL', image: 'mysql.svg', height: '3em', bottom: '1.2em'},
-        {name: 'Terminal', image: 'terminal.svg', height: '3em', bottom: '1.4em'},
-        {name: 'Settings', image: 'settings.svg', height: '3em', bottom: '1.6em'},
+        {id: 'terminal', name: 'Terminal', image: 'terminal.svg', height: '3em', bottom: '1.4em'},
+        {id: 'settings', name: 'Settings', image: 'settings.svg', height: '3em', bottom: '1.6em'},
       ],
+      openApps: ['terminal'],
       backgrounds: ['kotlin.svg', 'java.svg', 'mysql.svg', 'terminal.svg'],
       ready: false,
       fly: false,
       zoom: false,
+    }
+  },
+  computed: {
+    currentApps() {
+      return this.openApps.map(item => this.apps.find(app => app.id === item));
     }
   },
   methods: {
@@ -82,6 +92,7 @@ export default {
       const element = document.getElementById(app);
       if (openElements.includes(element)) {
         delete openElements[openElements.indexOf(element)];
+        this.openApps = this.openApps.filter(item => item !== app);
         element.style.animation = "close 0.1s linear forwards";
         setTimeout(() => {
           resetElement(element);
@@ -98,6 +109,15 @@ export default {
       resetElement(document.getElementById("settings"));
 
       openElements.push(document.getElementById('terminal'));
+    },
+    openWindow(app) {
+      const element = document.getElementById(app);
+      if (!openElements.includes(element)) {
+        openElements.push(element);
+        this.openApps.push(app);
+        bringToFront(element);
+        element.style.animation = "maximize 0.25s linear forwards";
+      }
     },
     sizeWindow(app) {
       const element = document.getElementById(app);
