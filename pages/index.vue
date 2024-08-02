@@ -92,6 +92,9 @@ export default {
       dragElement(document.getElementById("terminal"));
       dragElement(document.getElementById("settings"));
 
+      resetElement(document.getElementById("terminal"));
+      resetElement(document.getElementById("settings"));
+
       openElements.push(document.getElementById('terminal'));
     },
     taskBarClick(item) {
