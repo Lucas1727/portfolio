@@ -49,7 +49,18 @@ export const dragElement = function (htmlElement: HTMLElement) {
   }
 }
 
+export const centerElement = function (htmlElement: HTMLElement) {
+
+  winX = (window.innerWidth / 2) - (htmlElement.offsetWidth / 2);
+  winY = (window.innerHeight / 2) - (htmlElement.offsetHeight / 2);
+
+  htmlElement.style.left = winX + "px";
+  htmlElement.style.top = winY + "px";
+}
+
 export const resetElement = function (htmlElement: HTMLElement) {
+
+  htmlElement.style.width = "40em";
 
   winX = (window.innerWidth / 2) - (htmlElement.offsetWidth / 2);
   winY = (window.innerHeight / 2) - (htmlElement.offsetHeight / 2);
@@ -64,4 +75,36 @@ export const bringToFront = function (htmlElement: HTMLElement) {
   openElements.forEach((app) => {
     if (app.id !== htmlElement.id) app.style.zIndex = "7";
   });
+}
+
+/** Fetch url function that returns a promise
+ * @param requestType - The request type ( POST / GET / PUT / DELETE )
+ * @param url - The url to fetch
+ * @param headers (Optional) - The headers to send ( [{"Accept": "application/json"}] )
+ * @param payload (Optional) - The payload to send ( {"token": "abc123"} ) */
+export const urlFetch = function (requestType: 'GET' | 'POST' | 'DELETE' | 'PUT', url: string, headers?: Record<string, string | null>[], payload?: any) {
+  return new Promise<any>(async (resolve, reject) => {
+    const {data, error} = await useFetch(url, {
+      method: requestType,
+      body: payload,
+      headers: createHeaders(headers)
+    });
+
+    if (error.value === null) resolve(toRaw(data.value)); else reject(error)
+  })
+}
+
+/** Returns the headers object
+ * @param headers (Optional) - The headers to send ( [{"Accept": "application/json"}] ) */
+export const createHeaders = function (headers?: Record<string, string | null>[]) {
+
+  if (headers) {
+    let object = {}
+
+    headers.map((header) => {
+      object = {...object, ...header}
+    })
+
+    return object = {...object}
+  }
 }

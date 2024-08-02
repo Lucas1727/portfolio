@@ -2,10 +2,30 @@ $spawn-height: 80;
 $spawn-width: 80;
 $total: 10;
 
+@property --colour {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: black;
+}
+
 #background {
-  //height: 100vh !important;
   height: 100% !important;
-  background: radial-gradient(ellipse at bottom, $primary 0%, $blacksmoke 100%);
+  --colour: black;
+  transition: --c 0.2s;
+  background: radial-gradient(ellipse at bottom, var(--colour) 0%, $blacksmoke 100%);
+  animation: wallpaper 20s linear infinite alternate;
+}
+
+@keyframes wallpaper {
+  from {
+    --colour: #ff3289;
+  }
+  50% {
+    --colour: #0033ff;
+  }
+  to {
+    --colour: #dd00ff;
+  }
 }
 
 //#background {

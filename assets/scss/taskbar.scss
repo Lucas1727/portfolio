@@ -4,6 +4,7 @@
   align-content: center;
   width: 100%;
   height: 3em;
+  z-index: 6;
 
   #task-bar {
     display: flex;
@@ -32,6 +33,27 @@
       }
       to {
         opacity: 1;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+
+}
+
+@media only screen and (max-width: 600px) {
+  .v-footer {
+
+    #task-bar {
+
+      .task-icons {
+        width: 3em;
+        transform: scale(1.2);
+      }
+
+      .task-icons:hover {
+        transform: scale(1.5);
       }
     }
   }

@@ -4,7 +4,7 @@
   z-index: 7;
   text-align: center;
   opacity: 0;
-  //animation: maximize 0.25s linear forwards;
+  max-width: calc(100vw - 2em);
 
   #settings-navbar {
     height: 1.8em;
@@ -15,7 +15,7 @@
     cursor: move;
     z-index: 10;
 
-    .settings-buttons {
+    .nav-btn {
       height: 1.4em;
       width: 1.4em;
       border-radius: 50%;
@@ -23,7 +23,6 @@
       right: 0.2em;
       top: 0.2em;
       margin-inline: 0.1em;
-      background-color: $primary;
       border: 1px solid $blacksmoke;
       display: inline-block;
       cursor: pointer;
@@ -37,18 +36,10 @@
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
 
-    h1 {
-      font-size: 3em;
-      line-height: 1.2em;
-      color: white;
-      font-family: 'Lucida Console', Monaco, monospace;
-    }
-
-    h3 {
-      font-size: 1.2em;
-      line-height: 1.2em;
-      color: white;
-      font-family: 'Lucida Console', Monaco, monospace;
+    .v-btn {
+      background: $whitesmoke;
+      margin-inline: 4px;
+      padding: 2px 4px;
     }
   }
 
@@ -90,34 +81,5 @@
 }
 
 @media only screen and (max-width: 600px) {
-  #settings {
-    top: 30vh;
-    width: 20em;
-    left: calc(50vw - 10em);
 
-    #settings-navbar {
-      height: 1.4em;
-
-      .settings-buttons {
-        height: 1em;
-        width: 1em;
-        right: 0.2em;
-        top: 0.2em;
-        margin-inline: 0.1em;
-        border: 1px solid $blacksmoke;
-      }
-    }
-
-    #settings-body {
-      width: 20em;
-
-      h1 {
-        font-size: 1em;
-      }
-
-      h3 {
-        font-size: 0.6em;
-      }
-    }
-  }
 }

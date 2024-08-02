@@ -11,24 +11,26 @@
     <div id="settings">
       <div id=settings-navbar>
         <v-spacer></v-spacer>
-        <div @click="toggleWindow('settings')" class="settings-buttons" style="background-color: #5ac846"></div>
-        <div @click="" class="settings-buttons" style="background-color: #f0c828"></div>
-        <div @click="closeWindow('settings')" class="settings-buttons" style="background-color: #f0645a"></div>
+        <div @click="toggleWindow('settings')" class="nav-btn" style="background-color: #5ac846"></div>
+        <div @click="sizeWindow('settings')" class="nav-btn" style="background-color: #f0c828"></div>
+        <div @click="closeWindow('settings')" class="nav-btn" style="background-color: #f0645a"></div>
       </div>
 
       <div id="settings-body">
         <h1>Settings</h1>
-        <v-btn @click="toggleFly">Fly</v-btn>
-        <v-btn @click="toggleZoom">Zoom</v-btn>
+        <h2 style="padding-top: 1em">Wallpaper</h2>
+        <h3>Animation style</h3>
+        <v-btn class="v-btn" @click="toggleFly">Fly</v-btn>
+        <v-btn class="v-btn" @click="toggleZoom">Zoom</v-btn>
       </div>
     </div>
 
     <div id="terminal">
       <div id=terminal-navbar>
         <v-spacer></v-spacer>
-        <div @click="toggleWindow('terminal')" class="terminal-buttons" style="background-color: #5ac846"></div>
-        <div @click="" class="terminal-buttons" style="background-color: #f0c828"></div>
-        <div @click="closeWindow('terminal')" class="terminal-buttons" style="background-color: #f0645a"></div>
+        <div @click="toggleWindow('terminal')" class="nav-btn" style="background-color: #5ac846"></div>
+        <div @click="sizeWindow('terminal')" class="nav-btn" style="background-color: #f0c828"></div>
+        <div @click="closeWindow('terminal')" class="nav-btn" style="background-color: #f0645a"></div>
       </div>
 
       <div id="terminal-body">
@@ -55,7 +57,7 @@
 </template>
 
 <script>
-import {bringToFront, dragElement, openElements, resetElement} from "assets/ts/methods.ts";
+import {bringToFront, centerElement, dragElement, openElements, resetElement} from "assets/ts/methods.ts";
 
 export default {
   setup() {
@@ -87,8 +89,8 @@ export default {
       }
     },
     loadElements() {
-      dragElement(document.getElementById("app1"));
-      dragElement(document.getElementById("app2"));
+      // dragElement(document.getElementById("app1"));
+      // dragElement(document.getElementById("app2"));
       dragElement(document.getElementById("terminal"));
       dragElement(document.getElementById("settings"));
 
@@ -96,6 +98,18 @@ export default {
       resetElement(document.getElementById("settings"));
 
       openElements.push(document.getElementById('terminal'));
+    },
+    sizeWindow(app) {
+      const element = document.getElementById(app);
+      if (openElements.includes(element)) {
+        if (element.offsetWidth > 16 * 40) {
+          element.style.width = "40em";
+          centerElement(element);
+        } else {
+          element.style.width = "80em";
+          centerElement(element);
+        }
+      }
     },
     taskBarClick(item) {
       if (item === 'Terminal') this.toggleWindow('terminal');

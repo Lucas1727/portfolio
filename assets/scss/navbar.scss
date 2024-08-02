@@ -1,6 +1,13 @@
 #navbar {
   background-color: rgba(0, 0, 0, 0.8);
-  color: #fff;
+  color: $white;
   z-index: 10;
   //position: fixed;
+}
+
+#wifi-window {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: $white;
+  z-index: 10;
+  padding: 1em;
 }

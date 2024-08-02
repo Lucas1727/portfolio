@@ -9,9 +9,24 @@
       </v-toolbar-title>
 
       <template v-slot:append>
-        <v-btn icon="mdi-wifi"></v-btn>
-        <v-btn icon="mdi-volume-high"></v-btn>
-        <v-btn icon="mdi-power"></v-btn>
+        <v-menu location="bottom" transition="slide-y-transition">
+          <template v-slot:activator="{ props: menu }">
+            <v-btn icon="mdi-wifi" @click="wifi" v-bind="menu"></v-btn>
+          </template>
+
+          <v-card id="wifi-window">
+            Ping: {{ ping }}ms
+            <v-tooltip location="bottom">
+              <template v-slot:activator="{ props: tooltip }">
+                <v-icon v-bind="tooltip">mdi-signal</v-icon>
+              </template>
+              <span>{{ host }}</span>
+            </v-tooltip>
+          </v-card>
+        </v-menu>
+        <!--        <v-btn icon="mdi-volume-high"></v-btn>-->
+        <v-btn icon="mdi-account"></v-btn>
+        <v-btn icon="mdi-power" @click="shutdown"></v-btn>
       </template>
     </v-toolbar>
 
@@ -22,7 +37,8 @@
 </template>
 
 <script>
-import {getDateString} from "~/assets/ts/methods.ts";
+import {getDateString, urlFetch} from "~/assets/ts/methods.ts";
+import {mergeProps} from "vue";
 
 export default {
   setup() {
@@ -31,12 +47,42 @@ export default {
   },
   data() {
     return {
-      date: ''
+      date: '',
+      host: 'portfolio.faenor.co.uk',
+      ping: '',
+      showWifi: false,
     }
   },
   methods: {
+    mergeProps,
     getDate() {
       return getDateString(Date.now(), 'DD MMMM HH:mm')
+    },
+    async pingHost(host) {
+      const start = new Date().getTime()
+
+      return new Promise((resolve, reject) => {
+        urlFetch('GET', `https://${host}`).then(() => {
+          resolve(new Date().getTime() - start)
+        }).catch(() => {
+          reject(999);
+        })
+      })
+    },
+    shutdown() {
+      window.close();
+    },
+    wifi() {
+      if (this.showWifi) {
+        this.showWifi = false
+      } else {
+        this.pingHost(this.host).then((ping) => {
+          this.ping = ping
+        }).catch(() => {
+          this.ping = 'ERR'
+        })
+        this.showWifi = true
+      }
     }
   },
   created() {
