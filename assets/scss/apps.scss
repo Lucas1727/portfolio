@@ -1,15 +1,21 @@
 .app {
   height: 6em;
   width: 6em;
-  position: absolute;
+  margin-block: 2em;
+  margin-inline: 1em;
   text-align: center;
   //background-color: rgba(0, 0, 0, 0.5);
   background-size: 100% 100%;
   border-radius: 10px;
-  display: flex;
-  //cursor: move;
   cursor: pointer;
   z-index: 6;
+}
+
+.app-label {
+  margin: auto;
+  color: white;
+  font-family: 'Lucida Console', Monaco, monospace;
+  padding-top: 6em;
 }
 
 #cv-app {
@@ -22,4 +28,21 @@
 
 #settings-app {
   background-image: url("settings.svg") !important;
+}
+
+@media only screen and (max-width: 1200px) {
+
+}
+
+@media only screen and (max-width: 600px) {
+  .app {
+    height: 4em;
+    width: 4em;
+    margin-block: 1.5em;
+    margin-inline: 0.5em;
+  }
+
+  .app-label {
+    padding-top: 4em;
+  }
 }

@@ -2,42 +2,62 @@
   <v-container fluid id="background">
     <!--    <v-sheet style="height: 100vh"></v-sheet>-->
 
-    <v-img v-if="fly" v-for="item in backgrounds" :src="item" height="256" width="256" class="fly"></v-img>
-    <v-img v-if="zoom" v-for="item in backgrounds" :src="item" height="256" width="256" class="zoom"></v-img>
+    <v-img v-if="fly" v-for="item in currentBackgrounds" :src="item" height="256" width="256" class="fly"></v-img>
+    <v-img v-if="zoom" v-for="item in currentBackgrounds" :src="item" height="256" width="256" class="zoom"></v-img>
 
-    <div id="cv-app" class="app" style="top: 6vh; calc(5vw - 6em);">
-      <div id=cv-label></div>
+    <div style="padding-top: 2em;">
+      <div id="cv-app" class="app" @click="">
+        <div class=app-label>CV</div>
+      </div>
+
+      <div id="terminal-app" class="app" @click="openWindow('terminal')">
+        <div class=app-label>Terminal</div>
+      </div>
+
+      <div id="settings-app" class="app" @click="openWindow('settings')">
+        <div class=app-label>Settings</div>
+      </div>
     </div>
 
-    <div id="terminal-app" class="app" @click="openWindow('terminal')" style="top: 16vh; calc(5vw - 6em);"></div>
-    <div id="settings-app" class="app" @click="openWindow('settings')" style="top: 24vh; calc(5vw - 6em);"></div>
-
-    <div id="settings">
-      <div id=settings-navbar>
+    <!--     TODO - Move these to separate components-->
+    <div id="settings" class="window">
+      <div id="settings-navbar" class="window-navbar">
         <v-spacer></v-spacer>
         <div @click="toggleWindow('settings')" class="nav-btn" style="background-color: #5ac846"></div>
         <div @click="sizeWindow('settings')" class="nav-btn" style="background-color: #f0c828"></div>
         <div @click="closeWindow('settings')" class="nav-btn" style="background-color: #f0645a"></div>
       </div>
 
-      <div id="settings-body">
+      <div id="settings-body" class="window-body">
         <h1>Settings</h1>
         <h2 style="padding-top: 1em">Wallpaper</h2>
-        <h3>Animation style</h3>
+        <h3 style="padding-top: 1em">Animation style</h3>
         <v-btn class="v-btn" @click="toggleFly">Fly</v-btn>
         <v-btn class="v-btn" @click="toggleZoom">Zoom</v-btn>
+        <h3 style="padding-top: 1em">Icon select</h3>
+        <div class="icon-select">
+          <v-img v-for="item in apps" :key="item" class="icon" :src="item.image" @click="">
+            <v-tooltip activator="parent" location="bottom" open-delay="500">{{ item.name }}</v-tooltip>
+            <template v-slot:placeholder>
+              <div class="d-flex align-center justify-center fill-height">
+                <v-progress-circular color="white" indeterminate></v-progress-circular>
+              </div>
+            </template>
+          </v-img>
+        </div>
       </div>
     </div>
 
-    <div id="terminal">
-      <div id=terminal-navbar>
+    <!--    TODO - Move these to separate components-->
+    <div id="terminal" class="window">
+      <div id="terminal-navbar" class="window-navbar">
         <v-spacer></v-spacer>
         <div @click="toggleWindow('terminal')" class="nav-btn" style="background-color: #5ac846"></div>
         <div @click="sizeWindow('terminal')" class="nav-btn" style="background-color: #f0c828"></div>
         <div @click="closeWindow('terminal')" class="nav-btn" style="background-color: #f0645a"></div>
       </div>
 
-      <div id="terminal-body">
+      <div id="terminal-body" class="window-body">
         <h1 class="typewriter">Hi!</h1>
         <h1 class="typewriter">I'm Lucas Ridge</h1>
         <h3 class="typewriter">{"occupation":"Web/Backend Developer"}</h3>
@@ -69,14 +89,14 @@ export default {
   data() {
     return {
       apps: [
-        // {name: 'Kotlin', image: 'kotlin.svg', height: '2.6em', bottom: '2em'},
-        // {name: 'Java', image: 'java.svg', height: '3em', bottom: '2.2em'},
-        // {name: 'MySQL', image: 'mysql.svg', height: '3em', bottom: '1.2em'},
+        {id: 'kotlin', name: 'Kotlin', image: 'kotlin.svg', height: '2.6em', bottom: '2em'},
+        {id: 'java', name: 'Java', image: 'java.svg', height: '3em', bottom: '2.2em'},
+        {id: 'mysql', name: 'MySQL', image: 'mysql.svg', height: '3em', bottom: '1.2em'},
         {id: 'terminal', name: 'Terminal', image: 'terminal.svg', height: '3em', bottom: '1.4em'},
         {id: 'settings', name: 'Settings', image: 'settings.svg', height: '3em', bottom: '1.6em'},
       ],
-      openApps: ['terminal'],
-      backgrounds: ['kotlin.svg', 'java.svg', 'mysql.svg', 'terminal.svg'],
+      openApps: [],
+      backgrounds: [],
       ready: false,
       fly: false,
       zoom: false,
@@ -85,6 +105,9 @@ export default {
   computed: {
     currentApps() {
       return this.openApps.map(item => this.apps.find(app => app.id === item));
+    },
+    currentBackgrounds() {
+      return this.backgrounds;
     }
   },
   methods: {
@@ -109,6 +132,7 @@ export default {
       resetElement(document.getElementById("settings"));
 
       openElements.push(document.getElementById('terminal'));
+      this.openApps.push('terminal');
     },
     openWindow(app) {
       const element = document.getElementById(app);
@@ -118,6 +142,9 @@ export default {
         bringToFront(element);
         element.style.animation = "maximize 0.25s linear forwards";
       }
+    },
+    populateBackground() {
+      this.backgrounds = this.apps.map(item => item.image);
     },
     sizeWindow(app) {
       const element = document.getElementById(app);
@@ -158,6 +185,7 @@ export default {
   mounted() {
     this.toggleZoom();
     this.loadElements();
+    this.populateBackground();
     this.ready = true;
   }
 }
