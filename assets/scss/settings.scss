@@ -8,6 +8,15 @@
 
   #settings-body {
 
+    h2 {
+      padding-top: 1em;
+    }
+
+    h3 {
+      padding-top: 0.75em;
+      padding-bottom: 0.25em;
+    }
+
     .v-btn {
       background: $whitesmoke;
       margin-inline: 4px;
@@ -15,15 +24,28 @@
     }
 
     .icon-select {
-      padding-inline: 2em;
-      background: rgba(255, 255, 255, 0.1);
+      margin-inline: 1em;
+      background: rgba(255, 255, 255, 0.25);
       display: flex;
+      overflow: auto;
+      scrollbar-width: none;
+      border-radius: 10px;
+
+      .label {
+        padding-top: 1em;
+        padding-left: 1em;
+      }
     }
 
     .icon {
       width: 2em;
       margin: 0.5em;
       cursor: pointer;
+    }
+
+    .v-divider {
+      margin-top: 1em;
+      color: $whitesmoke;
     }
   }
 }

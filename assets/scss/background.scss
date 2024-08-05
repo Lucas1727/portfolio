@@ -1,6 +1,6 @@
 $spawn-height: 80;
 $spawn-width: 80;
-$total: 10;
+$total: 20;
 
 @property --colour {
   syntax: '<color>';
@@ -89,13 +89,13 @@ $total: 10;
     @keyframes fly#{$fly} {
       from {
         top: 150%;
-        transform: scale(calc(random(5) / 10) + 0.5) rotate(random(360) + deg) translate(-50%, -50%);
+        transform: scale(calc(random(5) / 10) + 0.2) rotate(random(360) + deg) translate(-50%, -50%);
         opacity: 0.2;
       }
       to {
         opacity: 0;
         top: -50%;
-        transform: scale(calc(random(5) / 10) + 0.5) rotate(random(360) + deg) translate(-50%, -50%);
+        transform: scale(calc(random(5) / 10) + 0.2) rotate(random(360) + deg) translate(-50%, -50%);
       }
     }
   }
