@@ -9,6 +9,11 @@
   border-radius: 10px;
   cursor: pointer;
   z-index: 6;
+  transition: transform 0.1s ease-in-out;
+}
+
+.app:hover {
+  transform: scale(1.2);
 }
 
 .app-label {
@@ -16,6 +21,10 @@
   color: white;
   font-family: 'Lucida Console', Monaco, monospace;
   padding-top: 6em;
+}
+
+#about-app {
+  background-image: url("word.svg") !important;
 }
 
 #cv-app {
