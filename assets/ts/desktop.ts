@@ -1,24 +1,24 @@
 let winX = 0, winY = 0, mouseX = 0, mouseY = 0;
 export let openElements: HTMLElement[] = reactive([]);
 
-export function isElementOpen(element: HTMLElement) {
+export function isElementOpen(htmlElement: HTMLElement) {
 
-    return openElements.includes(element)
+    return openElements.includes(htmlElement)
 }
 
-export function addElement(element: HTMLElement) {
+export function addElement(htmlElement: HTMLElement) {
 
-    openElements.push(element);
+    openElements.push(htmlElement);
 }
 
 export function getOpenElements() {
     return openElements;
 }
 
-export function removeElement(element: HTMLElement) {
+export function removeElement(htmlElement: HTMLElement) {
 
-    if (openElements.includes(element)) {
-        delete openElements[openElements.indexOf(element)];
+    if (openElements.includes(htmlElement)) {
+        delete openElements[openElements.indexOf(htmlElement)];
     }
 }
 
@@ -38,13 +38,23 @@ export function bringElementToBack(htmlElement: HTMLElement) {
     });
 }
 
-export const dragElement = function (htmlElement: HTMLElement) {
+export function clickElement(htmlElement: HTMLElement) {
 
-    const element = document.getElementById(htmlElement.id + "-navbar");
+    const element = document.getElementById(htmlElement.id);
 
-    if (element) element!!.onmousedown = dragMouseDown; else htmlElement.onmousedown = dragMouseDown;
+    if (element) element!!.onclick = () => bringElementToFront(element);
+}
+
+export function dragElement(htmlElement: HTMLElement) {
+
+    // const element = document.getElementById(htmlElement.id + "-navbar");
+
+    htmlElement.onmousedown = dragMouseDown;
+
+    console.log(htmlElement.id + " is draggable");
 
     function dragMouseDown(mouseEvent: MouseEvent) {
+
         mouseEvent = mouseEvent || window.event;
         mouseEvent.preventDefault();
 
@@ -66,8 +76,6 @@ export const dragElement = function (htmlElement: HTMLElement) {
 
         htmlElement.style.left = (htmlElement.offsetLeft - winX) + "px";
         htmlElement.style.top = (htmlElement.offsetTop - winY) + "px";
-
-        bringElementToFront(htmlElement);
     }
 
     function closeDragElement() {
@@ -76,7 +84,7 @@ export const dragElement = function (htmlElement: HTMLElement) {
     }
 }
 
-export const centerElement = function (htmlElement: HTMLElement) {
+export function centerElement(htmlElement: HTMLElement) {
 
     winX = (window.innerWidth / 2) - (htmlElement.offsetWidth / 2);
     winY = (window.innerHeight / 2) - (htmlElement.offsetHeight / 2);
@@ -85,7 +93,7 @@ export const centerElement = function (htmlElement: HTMLElement) {
     htmlElement.style.top = winY + "px";
 }
 
-export const resetElement = function (htmlElement: HTMLElement) {
+export function resetElement(htmlElement: HTMLElement) {
 
     htmlElement.style.width = "40em";
 
@@ -99,17 +107,29 @@ export const resetElement = function (htmlElement: HTMLElement) {
 export function openWindow(id: string) {
     const element = document.getElementById(id);
 
-    if (!isElementOpen(element)) {
+    if (element && !isElementOpen(element)) {
         addElement(element);
         bringElementToFront(element);
         element.style.animation = "maximize 0.25s linear forwards";
     }
 }
 
-export function closeWindow(id: any) {
-    const element = document.getElementById(id) as HTMLElement;
+export function clickWindow(id: string) {
+    const element = document.getElementById(id + "-navbar");
 
-    if (isElementOpen(element)) {
+    if (element) clickElement(element);
+}
+
+export function dragWindow(id: string) {
+    const element = document.getElementById(id + "-navbar");
+
+    if (element) dragElement(element);
+}
+
+export function closeWindow(id: string) {
+    const element = document.getElementById(id);
+
+    if (element && isElementOpen(element)) {
         removeElement(element)
         element.style.animation = "close 0.1s linear forwards";
         setTimeout(() => {
@@ -118,10 +138,10 @@ export function closeWindow(id: any) {
     }
 }
 
-export function sizeWindow(id: any) {
-    const element = document.getElementById(id) as HTMLElement;
+export function sizeWindow(id: string) {
+    const element = document.getElementById(id);
 
-    if (isElementOpen(element)) {
+    if (element && isElementOpen(element)) {
         if (element.offsetWidth > 16 * 40) {
             element.style.width = "40em";
             centerElement(element);
@@ -132,14 +152,16 @@ export function sizeWindow(id: any) {
     }
 }
 
-export function toggleWindow(id: any) {
-    const element = document.getElementById(id) as HTMLElement;
+export function toggleWindow(id: string) {
+    const element = document.getElementById(id);
 
-    if (isElementOpen(element) && element.style.zIndex == "8") {
-        element.style.animation = "minimize 0.25s linear forwards";
-        bringElementToBack(element);
-    } else {
-        bringElementToFront(element);
-        element.style.animation = "maximize 0.25s linear forwards";
+    if (element && isElementOpen(element)) {
+        if (element.style.zIndex == "8") {
+            element.style.animation = "minimize 0.25s linear forwards";
+            bringElementToBack(element);
+        } else {
+            bringElementToFront(element);
+            element.style.animation = "maximize 0.25s linear forwards";
+        }
     }
 }

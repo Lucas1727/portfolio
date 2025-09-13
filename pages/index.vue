@@ -2,17 +2,10 @@
   <v-container fluid id="background">
 
     <div style="padding-top: 2em;">
-      <div id="cv-app" class="app" @click="openWindow('cv')">
-        <div class=app-label>CV</div>
-      </div>
-
-      <div id="terminal-app" class="app" @click="openWindow('terminal')">
-        <div class=app-label>Terminal</div>
-      </div>
-
-      <div id="settings-app" class="app" @click="openWindow('settings')">
-        <div class=app-label>Settings</div>
-      </div>
+      <!--      <Program v-for="app in apps" :key="app.id" :id="app.id" :name="app.name" :image="app.image"/>-->
+      <Program id="cv" name="CV" image="word.svg"/>
+      <Program id="terminal" name="Terminal" image="terminal.svg"/>
+      <Program id="settings" name="Settings" image="settings.svg"/>
     </div>
 
     <window app="cv">
@@ -28,7 +21,7 @@
       <v-btn class="v-btn" @click="toggleZoom">Zoom</v-btn>
       <h3>Icon select</h3>
       <div class="icon-select">
-        <v-img v-for="app in apps" :key="app" class="icon" :src="app.image" @click="toggleBackgroundIcon(app.image)">
+        <v-img v-for="app in apps" class="icon" :src="app.image" @click="toggleBackgroundIcon(app.image)">
           <v-tooltip activator="parent" location="bottom" open-delay="500">{{ app.name }}</v-tooltip>
           <template v-slot:placeholder>
             <div class="d-flex align-center justify-center fill-height">
@@ -53,7 +46,7 @@
 
     <v-footer v-if="ready" color="transparent">
       <div id="task-bar">
-        <v-img v-for="item in currentApps" :key="item" class="task-icons" :src="item.image" :style="`height: ${item.height}; bottom: ${item.bottom}`" @click="taskBarClick(item.id)">
+        <v-img v-for="item in currentApps" class="task-icons" :src="item.image" :style="`height: ${item.height}; bottom: ${item.bottom}`" @click="taskBarClick(item.id)">
           <v-tooltip activator="parent" location="bottom" open-delay="500">{{ item.name }}</v-tooltip>
           <template v-slot:placeholder>
             <div class="d-flex align-center justify-center fill-height">
@@ -71,19 +64,15 @@
 </template>
 
 <script lang="ts">
-import {addElement, dragElement, openElements, openWindow, resetElement, toggleWindow} from "assets/ts/desktop";
+import {addElement, openElements, resetElement, toggleWindow, dragWindow, clickWindow, dragElement, clickElement} from "assets/ts/desktop";
 import {shuffleArray} from "assets/ts/methods";
 
 export default {
   setup() {
-    return {
-      openWindow
-    };
   },
   data() {
     return {
       apps: [
-        {id: 'about', name: 'About', image: 'word.svg', height: '3em', bottom: '1.8em'},
         {id: 'apple', name: 'Apple', image: 'apple.svg', height: '3em', bottom: '1.6em'},
         {id: 'cv', name: 'CV', image: 'word.svg', height: '3em', bottom: '1.8em'},
         {id: 'css', name: 'CSS', image: 'css.svg', height: '3em', bottom: '1.4em'},
@@ -120,15 +109,19 @@ export default {
   },
   methods: {
     loadElements() {
-      dragElement(document.getElementById("cv"));
-      dragElement(document.getElementById("terminal"));
-      dragElement(document.getElementById("settings"));
+      this.apps.forEach((app) => {
+        const element = document.getElementById(app.id);
 
-      resetElement(document.getElementById("cv"));
-      resetElement(document.getElementById("terminal"));
-      resetElement(document.getElementById("settings"));
+        if (element) {
+          dragElement(element);
+          clickElement(element);
+          resetElement(element);
+        }
+      })
 
-      addElement(document.getElementById('terminal'));
+      const terminal = document.getElementById('terminal')
+
+      if (terminal) addElement(terminal);
     },
     openCV() {
       window.open(this.cvUrl, '_blank');
@@ -158,8 +151,12 @@ export default {
   mounted() {
     this.toggleZoom();
     this.loadElements();
-    this.populateBackground();
+    // this.populateBackground();
     this.ready = true;
   },
 }
 </script>
+
+<style scoped>
+
+</style>
