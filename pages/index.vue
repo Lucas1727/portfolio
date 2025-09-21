@@ -8,41 +8,45 @@
       <Program id="settings" name="Settings" image="settings.svg"/>
     </div>
 
-    <window app="cv">
+    <Window app="cv">
       <v-btn class="v-btn" @click="openCV" style="margin-bottom: 1em">Open CV in new tab</v-btn>
       <iframe style="width: 100%; height: 100%; border: none;" :src="cvUrl"></iframe>
-    </window>
+    </Window>
 
-    <window app="settings">
-      <h1>Settings</h1>
-      <h2>Wallpaper</h2>
-      <h3>Animation style</h3>
-      <v-btn class="v-btn" @click="toggleFly">Fly</v-btn>
-      <v-btn class="v-btn" @click="toggleZoom">Zoom</v-btn>
-      <h3>Icon select</h3>
-      <div class="icon-select">
-        <v-img v-for="app in apps" class="icon" :src="app.image" @click="toggleBackgroundIcon(app.image)">
-          <v-tooltip activator="parent" location="bottom" open-delay="500">{{ app.name }}</v-tooltip>
-          <template v-slot:placeholder>
-            <div class="d-flex align-center justify-center fill-height">
-              <v-progress-circular color="white" indeterminate></v-progress-circular>
-            </div>
-          </template>
-          <v-icon v-if="backgrounds.includes(app.image)" class=label style="color: green">mdi-check</v-icon>
-          <v-icon v-else class=label style="color: red">mdi-check</v-icon>
-        </v-img>
-      </div>
-      <v-btn class="v-btn" @click="populateBackground" style="margin-top: 1em">Randomize</v-btn>
-      <v-divider class="v-divider"></v-divider>
-      <h2>System</h2>
-    </window>
+    <Settings/>
 
-    <window app="terminal">
+    <!--    <window app="settings">-->
+    <!--      <h1>Settings</h1>-->
+    <!--      <h2>Wallpaper</h2>-->
+    <!--      <h3>Animation style</h3>-->
+    <!--      <v-btn class="v-btn" @click="toggleFly">Fly</v-btn>-->
+    <!--      <v-btn class="v-btn" @click="toggleZoom">Zoom</v-btn>-->
+    <!--      <h3>Icon select</h3>-->
+    <!--      <div class="icon-select">-->
+    <!--        <v-img v-for="app in apps" class="icon" :src="app.image" @click="toggleBackgroundIcon(app.image)">-->
+    <!--          <v-tooltip activator="parent" location="bottom" open-delay="500">{{ app.name }}</v-tooltip>-->
+    <!--          <template v-slot:placeholder>-->
+    <!--            <div class="d-flex align-center justify-center fill-height">-->
+    <!--              <v-progress-circular color="white" indeterminate></v-progress-circular>-->
+    <!--            </div>-->
+    <!--          </template>-->
+    <!--          <v-icon v-if="backgrounds.includes(app.image)" class=label style="color: green">mdi-check</v-icon>-->
+    <!--          <v-icon v-else class=label style="color: red">mdi-check</v-icon>-->
+    <!--        </v-img>-->
+    <!--      </div>-->
+    <!--      <v-btn class="v-btn" @click="populateBackground" style="margin-top: 1em">Randomize</v-btn>-->
+    <!--      <v-divider class="v-divider"></v-divider>-->
+    <!--      <h2>System</h2>-->
+    <!--    </window>-->
+
+    <Window app="terminal">
       <h1 class="typewriter">Hi!</h1>
       <h1 class="typewriter">I'm Lucas Ridge</h1>
       <h3 class="typewriter">{"occupation":"Full Stack Developer"}</h3>
       <h3 class="typewriter">></h3>
-    </window>
+    </Window>
+
+    <!-- TODO - Add little cookie icon with popup -->
 
     <v-footer v-if="ready" color="transparent">
       <div id="task-bar">
@@ -56,18 +60,16 @@
         </v-img>
       </div>
     </v-footer>
-
-    <v-img v-if="fly" v-for="item in currentBackgrounds" :src="item" height="256" width="256" class="fly"></v-img>
-    <v-img v-if="zoom" v-for="item in currentBackgrounds" :src="item" height="256" width="256" class="zoom"></v-img>
-
   </v-container>
 </template>
 
 <script lang="ts">
-import {addElement, openElements, resetElement, toggleWindow, dragWindow, clickWindow, dragElement, clickElement} from "assets/ts/desktop";
+import {addElement, openElements, resetElement, toggleWindow, dragElement, clickElement} from "assets/ts/desktop";
 import {shuffleArray} from "assets/ts/methods";
+import Settings from "~/components/Settings.vue";
 
 export default {
+  components: {Settings},
   setup() {
   },
   data() {

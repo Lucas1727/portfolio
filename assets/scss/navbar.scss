@@ -5,8 +5,8 @@
   //position: fixed;
 }
 
-#wifi-window {
-  background-color: rgba(0, 0, 0, 0.8);
+.popout-window {
+  background-color: rgba(0, 0, 0, 0.8) !important;
   color: $white;
   z-index: 10;
   padding: 1em;

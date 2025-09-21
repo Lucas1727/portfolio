@@ -14,7 +14,7 @@
             <v-btn icon="mdi-wifi" @click="wifi" v-bind="menu"></v-btn>
           </template>
 
-          <v-card id="wifi-window">
+          <v-card id="wifi-window" class="popout-window">
             Ping: {{ ping }}ms
             <v-tooltip location="bottom">
               <template v-slot:activator="{ props: tooltip }">
@@ -24,8 +24,17 @@
             </v-tooltip>
           </v-card>
         </v-menu>
-        <!--        <v-btn icon="mdi-volume-high"></v-btn>-->
-        <v-btn icon="mdi-account"></v-btn>
+
+        <v-menu location="bottom" transition="slide-y-transition">
+          <template v-slot:activator="{ props: menu }">
+            <v-btn icon="mdi-account" v-bind="menu"></v-btn>
+          </template>
+
+          <v-card id="account-window" class="popout-window">
+            Build: {{ config.public.buildHash }}
+          </v-card>
+        </v-menu>
+
         <v-btn icon="mdi-power" @click="shutdown"></v-btn>
       </template>
     </v-toolbar>
@@ -38,12 +47,14 @@
 
 <script>
 import {getDateString, urlFetch} from "~/assets/ts/methods.ts";
-import {mergeProps} from "vue";
 
 export default {
   setup() {
-
-    return {}
+    const config = useRuntimeConfig()
+    
+    return {
+      config
+    }
   },
   data() {
     return {
@@ -54,7 +65,6 @@ export default {
     }
   },
   methods: {
-    mergeProps,
     getDate() {
       return getDateString(Date.now(), 'DD MMMM HH:mm')
     },

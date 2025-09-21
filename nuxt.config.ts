@@ -1,3 +1,5 @@
+import {defineNuxtConfig} from "nuxt/config";
+
 export default defineNuxtConfig({
 
     app: {
@@ -36,7 +38,10 @@ export default defineNuxtConfig({
     routeRules: {},
 
     runtimeConfig: {
-        public: {}
+        public: {
+            buildId: process.env.BUILD_ID,
+            buildHash: process.env.BUILD_HASH,
+        }
     },
 
     schemaOrg: {
