@@ -1,89 +1,14 @@
 #terminal {
-  top: 40vh;
   width: 40em;
-  left: calc(50vw - 20em);
-  position: absolute;
   z-index: 7;
-  text-align: center;
-  opacity: 0;
   animation: maximize 0.25s linear forwards;
 
   #terminal-navbar {
-    height: 1.8em;
-    background-color: $background-accent-dark;
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
-    display: flex;
-    cursor: move;
-    z-index: 10;
 
-    .terminal-buttons {
-      height: 1.4em;
-      width: 1.4em;
-      border-radius: 50%;
-      position: relative;
-      right: 0.2em;
-      top: 0.2em;
-      margin-inline: 0.1em;
-      background-color: $primary;
-      border: 1px solid $blacksmoke;
-      display: inline-block;
-      cursor: pointer;
-    }
   }
 
   #terminal-body {
-    margin: 0 auto;
-    background-color: $black-transparent;
-    padding-block: 20px;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
 
-    h1 {
-      font-size: 3em;
-      line-height: 1.2em;
-      color: white;
-      font-family: 'Lucida Console', Monaco, monospace;
-    }
-
-    h3 {
-      font-size: 1.2em;
-      line-height: 1.2em;
-      color: white;
-      font-family: 'Lucida Console', Monaco, monospace;
-    }
-  }
-
-  @keyframes maximize {
-    from {
-      opacity: 0;
-      top: 90vh;
-      transform: scale(0);
-    }
-    to {
-      opacity: 1;
-    }
-  }
-
-  @keyframes minimize {
-    from {
-      opacity: 1;
-    }
-    to {
-      opacity: 0;
-      top: 90vh;
-      transform: scale(0);
-    }
-  }
-
-  @keyframes close {
-    from {
-      opacity: 1;
-    }
-    to {
-      opacity: 0;
-      transform: scale(0);
-    }
   }
 }
 
@@ -186,34 +111,5 @@
 }
 
 @media only screen and (max-width: 600px) {
-  #terminal {
-    top: 10vh;
-    width: 20em;
-    left: calc(50vw - 10em);
 
-    #terminal-navbar {
-      height: 1.4em;
-
-      .terminal-buttons {
-        height: 1em;
-        width: 1em;
-        right: 0.2em;
-        top: 0.2em;
-        margin-inline: 0.1em;
-        border: 1px solid $blacksmoke;
-      }
-    }
-
-    #terminal-body {
-      width: 20em;
-
-      h1 {
-        font-size: 1em;
-      }
-
-      h3 {
-        font-size: 0.6em;
-      }
-    }
-  }
 }

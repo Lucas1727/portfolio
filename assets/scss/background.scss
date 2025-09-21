@@ -1,24 +1,32 @@
 $spawn-height: 80;
 $spawn-width: 80;
-$total: 10;
+$total: 20;
 
-#background {
-  //height: 100vh !important;
-  height: 100% !important;
-  background: radial-gradient(ellipse at bottom, $primary 0%, $blacksmoke 100%);
+@property --colour {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: black;
 }
 
-//#background {
-//  height: 200vh !important;
-//  //background: radial-gradient(ellipse at bottom, #1b1f26 0%, #000000 100%);
-//  overflow-y: scroll;
-//  scroll-snap-type: y mandatory;
-//  //overflow: auto !important;
-//  padding: 0;
-//  margin: 0;
-//  animation: background auto linear;
-//  animation-timeline: scroll();
-//}
+#background {
+  height: 100% !important;
+  --colour: black;
+  transition: --c 0.2s;
+  background: radial-gradient(ellipse at bottom, var(--colour) 0%, $blacksmoke 100%);
+  animation: wallpaper 20s linear infinite alternate;
+}
+
+@keyframes wallpaper {
+  from {
+    --colour: #ff3289;
+  }
+  50% {
+    --colour: #0033ff;
+  }
+  to {
+    --colour: #dd00ff;
+  }
+}
 
 .zoom {
   position: absolute;
@@ -69,13 +77,13 @@ $total: 10;
     @keyframes fly#{$fly} {
       from {
         top: 150%;
-        transform: scale(calc(random(5) / 10) + 0.5) rotate(random(360) + deg) translate(-50%, -50%);
+        transform: scale(calc(random(5) / 10) + 0.2) rotate(random(360) + deg) translate(-50%, -50%);
         opacity: 0.2;
       }
       to {
         opacity: 0;
         top: -50%;
-        transform: scale(calc(random(5) / 10) + 0.5) rotate(random(360) + deg) translate(-50%, -50%);
+        transform: scale(calc(random(5) / 10) + 0.2) rotate(random(360) + deg) translate(-50%, -50%);
       }
     }
   }

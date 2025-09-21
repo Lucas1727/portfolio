@@ -1,88 +1,51 @@
 #settings {
-  top: 40vh;
   width: 40em;
-  left: calc(50vw - 20em);
-  position: absolute;
   z-index: 7;
-  text-align: center;
-  opacity: 0;
-  //animation: maximize 0.25s linear forwards;
 
   #settings-navbar {
-    height: 1.8em;
-    background-color: $background-accent-dark;
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
-    display: flex;
-    cursor: move;
-    z-index: 10;
 
-    .settings-buttons {
-      height: 1.4em;
-      width: 1.4em;
-      border-radius: 50%;
-      position: relative;
-      right: 0.2em;
-      top: 0.2em;
-      margin-inline: 0.1em;
-      background-color: $primary;
-      border: 1px solid $blacksmoke;
-      display: inline-block;
-      cursor: pointer;
-    }
   }
 
   #settings-body {
-    margin: 0 auto;
-    background-color: $black-transparent;
-    padding-block: 20px;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
 
-    h1 {
-      font-size: 3em;
-      line-height: 1.2em;
-      color: white;
-      font-family: 'Lucida Console', Monaco, monospace;
+    h2 {
+      padding-top: 1em;
     }
 
     h3 {
-      font-size: 1.2em;
-      line-height: 1.2em;
-      color: white;
-      font-family: 'Lucida Console', Monaco, monospace;
+      padding-top: 0.75em;
+      padding-bottom: 0.25em;
     }
-  }
 
-  @keyframes maximize {
-    from {
-      opacity: 0;
-      top: 90vh;
-      transform: scale(0);
+    .v-btn {
+      background: $whitesmoke;
+      margin-inline: 4px;
+      padding: 2px 4px;
     }
-    to {
-      opacity: 1;
-    }
-  }
 
-  @keyframes minimize {
-    from {
-      opacity: 1;
-    }
-    to {
-      opacity: 0;
-      top: 90vh;
-      transform: scale(0);
-    }
-  }
+    .icon-select {
+      margin-inline: 1em;
+      background: rgba(255, 255, 255, 0.25);
+      display: flex;
+      overflow: auto;
+      scrollbar-width: none;
+      border-radius: 10px;
 
-  @keyframes close {
-    from {
-      opacity: 1;
+      .label {
+        padding-top: 1em;
+        padding-left: 1em;
+      }
     }
-    to {
-      opacity: 0;
-      transform: scale(0);
+
+    .icon {
+      width: 2em;
+      margin: 0.5em;
+      cursor: pointer;
+    }
+
+    .v-divider {
+      margin-top: 1em;
+      color: $whitesmoke;
     }
   }
 }
@@ -92,34 +55,5 @@
 }
 
 @media only screen and (max-width: 600px) {
-  #settings {
-    top: 30vh;
-    width: 20em;
-    left: calc(50vw - 10em);
 
-    #settings-navbar {
-      height: 1.4em;
-
-      .settings-buttons {
-        height: 1em;
-        width: 1em;
-        right: 0.2em;
-        top: 0.2em;
-        margin-inline: 0.1em;
-        border: 1px solid $blacksmoke;
-      }
-    }
-
-    #settings-body {
-      width: 20em;
-
-      h1 {
-        font-size: 1em;
-      }
-
-      h3 {
-        font-size: 0.6em;
-      }
-    }
-  }
 }

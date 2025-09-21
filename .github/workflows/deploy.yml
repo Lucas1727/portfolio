@@ -12,7 +12,9 @@ jobs:
       - run: corepack enable
       - uses: actions/setup-node@v3
         with:
-          node-version: "20"
+          node-version: "22"
+      - run: echo "BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" > .env
+      - run: echo "BUILD_HASH=$(git rev-parse --short HEAD)" >> .env
       - run: npm install
       - run: npx nuxt build --preset github_pages
       - name: Upload artifact
@@ -25,7 +27,7 @@ jobs:
       pages: write
       id-token: write
     environment:
-      name: github_pages
+      name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
