@@ -4,10 +4,10 @@
     <h2>Wallpaper</h2>
     <h3>Animation style</h3>
 
-<!--    <v-btn class="v-btn" @click="setBackgroundColor('#ff0000')" style="margin-right: 1em; margin-bottom: 1em">Dark</v-btn>-->
-<!--    <v-btn class="v-btn" @click="setBackgroundColor('#ffffff')" style="margin-right: 1em; margin-bottom: 1em">Light</v-btn>-->
-<!--    <v-btn class="v-btn" @click="setBackgroundSize(30)" style="margin-right: 1em; margin-bottom: 1em">Small</v-btn>-->
-<!--    <v-btn class="v-btn" @click="setBackgroundSize(100)" style="margin-right: 1em; margin-bottom: 1em">Large</v-btn>-->
+    <!--    <v-btn class="v-btn" @click="setBackgroundColor('#ff0000')" style="margin-right: 1em; margin-bottom: 1em">Dark</v-btn>-->
+    <!--    <v-btn class="v-btn" @click="setBackgroundColor('#ffffff')" style="margin-right: 1em; margin-bottom: 1em">Light</v-btn>-->
+    <!--    <v-btn class="v-btn" @click="setBackgroundSize(30)" style="margin-right: 1em; margin-bottom: 1em">Small</v-btn>-->
+    <!--    <v-btn class="v-btn" @click="setBackgroundSize(100)" style="margin-right: 1em; margin-bottom: 1em">Large</v-btn>-->
     <v-divider class="v-divider"></v-divider>
     <h2>System</h2>
   </Window>
@@ -20,7 +20,7 @@ function initialiseBackground() {
 
   if (element) {
     element.style.backgroundImage = `radial-gradient(ellipse, red 0%, #1f1f1fff 10%)`;
-    element.style.backgroundSize = '30px 30px';
+    element.style.backgroundSize = '2vw 2vw';
     element.style.backgroundRepeat = 'repeat';
   }
 }
@@ -41,7 +41,7 @@ function setBackgroundSize(size: string) {
 }
 
 onMounted(() => {
-  // initialiseBackground();
+  initialiseBackground();
 });
 
 </script>

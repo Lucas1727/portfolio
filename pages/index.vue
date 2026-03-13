@@ -10,34 +10,34 @@
 
     <Window app="cv">
       <v-btn class="v-btn" @click="openCV" style="margin-bottom: 1em">Open CV in new tab</v-btn>
-      <iframe style="width: 100%; height: 100%; border: none;" :src="cvUrl"></iframe>
+      <iframe style="" :src="cvUrl"></iframe>
     </Window>
 
     <Settings/>
 
-    <!--    <window app="settings">-->
-    <!--      <h1>Settings</h1>-->
-    <!--      <h2>Wallpaper</h2>-->
-    <!--      <h3>Animation style</h3>-->
-    <!--      <v-btn class="v-btn" @click="toggleFly">Fly</v-btn>-->
-    <!--      <v-btn class="v-btn" @click="toggleZoom">Zoom</v-btn>-->
-    <!--      <h3>Icon select</h3>-->
-    <!--      <div class="icon-select">-->
-    <!--        <v-img v-for="app in apps" class="icon" :src="app.image" @click="toggleBackgroundIcon(app.image)">-->
-    <!--          <v-tooltip activator="parent" location="bottom" open-delay="500">{{ app.name }}</v-tooltip>-->
-    <!--          <template v-slot:placeholder>-->
-    <!--            <div class="d-flex align-center justify-center fill-height">-->
-    <!--              <v-progress-circular color="white" indeterminate></v-progress-circular>-->
-    <!--            </div>-->
-    <!--          </template>-->
-    <!--          <v-icon v-if="backgrounds.includes(app.image)" class=label style="color: green">mdi-check</v-icon>-->
-    <!--          <v-icon v-else class=label style="color: red">mdi-check</v-icon>-->
-    <!--        </v-img>-->
-    <!--      </div>-->
-    <!--      <v-btn class="v-btn" @click="populateBackground" style="margin-top: 1em">Randomize</v-btn>-->
-    <!--      <v-divider class="v-divider"></v-divider>-->
-    <!--      <h2>System</h2>-->
-    <!--    </window>-->
+    <window app="settings">
+      <h1>Settings</h1>
+      <h2>Wallpaper</h2>
+      <h3>Animation style</h3>
+      <v-btn class="v-btn" @click="toggleFly">Fly</v-btn>
+      <v-btn class="v-btn" @click="toggleZoom">Zoom</v-btn>
+      <h3>Icon select</h3>
+      <div class="icon-select">
+        <v-img v-for="app in apps" class="icon" :src="app.image" @click="toggleBackgroundIcon(app.image)">
+          <v-tooltip activator="parent" location="bottom" open-delay="500">{{ app.name }}</v-tooltip>
+          <template v-slot:placeholder>
+            <div class="d-flex align-center justify-center fill-height">
+              <v-progress-circular color="white" indeterminate></v-progress-circular>
+            </div>
+          </template>
+          <v-icon v-if="backgrounds.includes(app.image)" class=label style="color: green">mdi-check</v-icon>
+          <v-icon v-else class=label style="color: red">mdi-check</v-icon>
+        </v-img>
+      </div>
+      <v-btn class="v-btn" @click="populateBackground" style="margin-top: 1em">Randomize</v-btn>
+      <v-divider class="v-divider"></v-divider>
+      <h2>System</h2>
+    </window>
 
     <Window app="terminal">
       <h1 class="typewriter">Hi!</h1>
@@ -103,7 +103,7 @@ export default {
   },
   computed: {
     currentApps() {
-      return openElements.map(item => this.apps.find(app => app.id === item.id)).filter(item => item !== undefined);
+      return openElements.map(item => this.apps.find(app => app.id === item.element.id)).filter(item => item !== undefined);
     },
     currentBackgrounds() {
       return this.backgrounds;

@@ -1,40 +1,53 @@
 let winX = 0, winY = 0, mouseX = 0, mouseY = 0;
-export let openElements: HTMLElement[] = reactive([]);
+
+export interface ElementEntry {
+    element: HTMLElement;
+    originalSize: { width: number; height: number };
+}
+
+export let openElements: ElementEntry[] = reactive([]);
 
 export function isElementOpen(htmlElement: HTMLElement) {
-
-    return openElements.includes(htmlElement)
+    return openElements.some(entry => entry.element === htmlElement);
 }
 
 export function addElement(htmlElement: HTMLElement) {
-
-    openElements.push(htmlElement);
+    const element = {
+        element: htmlElement,
+        originalSize: {width: htmlElement.offsetWidth, height: htmlElement.offsetHeight}
+    };
+    openElements.push(element);
+    console.log(element.originalSize)
 }
 
 export function getOpenElements() {
     return openElements;
 }
 
-export function removeElement(htmlElement: HTMLElement) {
+export function getElementById(id: string) {
+    return openElements.find(entry => entry.element.id === id) || null;
+}
 
-    if (openElements.includes(htmlElement)) {
-        delete openElements[openElements.indexOf(htmlElement)];
+export function removeElement(htmlElement: HTMLElement) {
+    const index = openElements.findIndex(entry => entry.element === htmlElement);
+    if (index !== -1) {
+        delete openElements[index];
     }
 }
 
 export function bringElementToFront(htmlElement: HTMLElement) {
     htmlElement.style.zIndex = "8";
 
-    openElements.forEach((app) => {
-        if (app.id !== htmlElement.id) app.style.zIndex = "7";
+    openElements.forEach(({element}) => {
+        if (element.id !== htmlElement.id) element.style.zIndex = "7";
     });
 }
 
 export function bringElementToBack(htmlElement: HTMLElement) {
     htmlElement.style.zIndex = "6";
 
-    openElements.forEach((app) => {
-        if (app.id !== htmlElement.id) app.style.zIndex = "7";
+    openElements.forEach(({element}) => {
+        if (element.id !== htmlElement.id) element.style.zIndex = "7";
     });
 }
 
@@ -88,6 +101,8 @@ export function centerElement(htmlElement: HTMLElement) {
 
     winX = (window.innerWidth / 2) - (htmlElement.offsetWidth / 2);
     winY = (window.innerHeight / 2) - (htmlElement.offsetHeight / 2);
+
+    winY -= 20;
 
     htmlElement.style.left = winX + "px";
     htmlElement.style.top = winY + "px";
@@ -144,9 +159,11 @@ export function sizeWindow(id: string) {
     if (element && isElementOpen(element)) {
         if (element.offsetWidth > 16 * 40) {
             element.style.width = "40em";
+            element.style.height = getElementById(element.id)?.originalSize.height + "px";
             centerElement(element);
         } else {
             element.style.width = "80em";
+            element.style.height = "80em";
             centerElement(element);
         }
     }

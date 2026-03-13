@@ -12,7 +12,7 @@ $total: 20;
   height: 100% !important;
   --colour: black;
   transition: --c 0.2s;
-  background: radial-gradient(ellipse at bottom, var(--colour) 0%, $blacksmoke 100%);
+  //background: radial-gradient(ellipse at bottom, var(--colour) 0%, $blacksmoke 100%);
   animation: wallpaper 20s linear infinite alternate;
 }
 

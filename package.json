@@ -15,6 +15,7 @@
     "moment": "^2.30.1",
     "nuxt": "^3.19.2",
     "vue": "^3.5.21",
+    "vue-mobile-detection": "^2.0.1",
     "vue-router": "^4.5.1",
     "vuetify": "^3.10.2"
   },
