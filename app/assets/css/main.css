@@ -1,0 +1,140 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+:root {
+    --gnome-bg: #0f0f1e;
+    --gnome-panel: #1e1e2e;
+    --gnome-panel-2: #2a2a3e;
+    --gnome-border: rgba(255 255 255 / 0.25);
+    --gnome-text: #cdd6f4;
+    --gnome-text-dim: #7f849c;
+    --gnome-text-bright: #ffffff;
+
+    --gnome-blue: #89b4fa;
+    --gnome-green: #a6e3a1;
+    --gnome-purple: #cba6f7;
+    --gnome-red: #f38ba8;
+    --gnome-yellow: #f9e2af;
+    --gnome-orange: #fac097;
+    --gnome-teal: #94e2d5;
+
+    --gnome-shadow-sm: 0 2px 8px rgba(0 0 0 / 0.5);
+    --gnome-shadow: 0 8px 16px rgba(0 0 0 / 0.6), 0 2px 8px rgba(0 0 0 / 0.4);
+    --gnome-shadow-lg: 0 12px 24px rgba(0 0 0 / 0.6), 0 4px 16px rgba(0 0 0 / 0.4);
+
+    --traffic-red: #ff5f57;
+    --traffic-amber: #febc2e;
+    --traffic-green: #28c840;
+
+    --term-line: var(--gnome-text-bright);
+    --term-line-command: var(--gnome-blue);
+    --term-line-error: var(--gnome-red);
+    --term-line-info: var(--gnome-text-dim);
+
+    --font-ui: 'Cantarell', ui-sans-serif, system-ui, sans-serif;
+    --font-mono: 'Source Code Pro', ui-monospace, monospace;
+}
+
+.dark, [data-theme="dark"] {
+    --ui-bg: var(--gnome-panel);
+    --ui-bg-elevated: var(--gnome-panel-2);
+    --ui-bg-muted: rgba(255 255 255 / 0.05);
+    --ui-border: var(--gnome-border);
+    --ui-border-muted: rgba(255 255 255 / 0.06);
+    --ui-text: var(--gnome-text);
+    --ui-text-muted: var(--gnome-text-dim);
+    --ui-text-highlighted: var(--gnome-text-bright);
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: var(--font-ui), sans-serif;
+    font-size: 14px;
+    color: var(--gnome-text);
+    background: var(--gnome-bg);
+    -webkit-font-smoothing: antialiased;
+    user-select: none;
+}
+
+::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255 255 255 / 0.1);
+    border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--gnome-blue);
+}
+
+.desktop-root {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+}
+
+.skill-track {
+    height: 8px;
+    background: rgba(255 255 255 / 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.skill-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 1s cubic-bezier(0.5, 0, 0.5, 1);
+}
+
+.timeline-line {
+    position: absolute;
+    left: 7px;
+    top: 18px;
+    bottom: 0;
+    width: 2px;
+    background: var(--gnome-border);
+}
+
+@keyframes orbFloat {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+    }
+    33% {
+        transform: translate(200px, -100px) scale(1.5);
+    }
+    66% {
+        transform: translate(-100px, -200px) scale(0.5);
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes notifSlide {
+    from {
+        transform: translateX(110%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}

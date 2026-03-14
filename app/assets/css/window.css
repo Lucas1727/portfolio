@@ -1,0 +1,165 @@
+.window-base {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    background: color-mix(in srgb, var(--gnome-panel) 90%, transparent);
+    border: 1px solid var(--gnome-border);
+    border-radius: 14px;
+    box-shadow: var(--gnome-shadow);
+    overflow: hidden;
+    will-change: transform;
+    transition: box-shadow 0.2s;
+}
+
+.window-base.focused {
+    box-shadow: var(--gnome-shadow-lg);
+}
+
+.window-base.maximized {
+    border-radius: 0 !important;
+    border: none !important;
+}
+
+.window-titlebar {
+    display: flex;
+    align-items: center;
+    height: 32px;
+    padding: 0 8px;
+    background: color-mix(in srgb, var(--gnome-panel) 50%, transparent);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--gnome-border);
+    flex-shrink: 0;
+    cursor: default;
+}
+
+.window-content {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    backdrop-filter: blur(4px);
+}
+
+.traffic-btn {
+    width: 16px;
+    height: 16px;
+    padding: 4px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: filter 0.1s, transform 0.1s;
+    color: var(--gnome-bg);
+
+    span {
+        width: 12px;
+        height: 12px;
+    }
+}
+
+.traffic-btn:hover {
+    filter: brightness(0.8);
+    transform: scale(1.2);
+}
+
+.resize-handle {
+    position: absolute;
+    z-index: 10;
+}
+
+.resize-n {
+    top: 0;
+    left: 8px;
+    right: 8px;
+    height: 6px;
+    cursor: n-resize;
+}
+
+.resize-s {
+    bottom: 0;
+    left: 8px;
+    right: 8px;
+    height: 6px;
+    cursor: s-resize;
+}
+
+.resize-e {
+    right: 0;
+    top: 8px;
+    bottom: 8px;
+    width: 6px;
+    cursor: e-resize;
+}
+
+.resize-w {
+    left: 0;
+    top: 8px;
+    bottom: 8px;
+    width: 6px;
+    cursor: w-resize;
+}
+
+.resize-ne {
+    top: 0;
+    right: 0;
+    width: 12px;
+    height: 12px;
+    cursor: ne-resize;
+}
+
+.resize-nw {
+    top: 0;
+    left: 0;
+    width: 12px;
+    height: 12px;
+    cursor: nw-resize;
+}
+
+.resize-se {
+    bottom: 0;
+    right: 0;
+    width: 12px;
+    height: 12px;
+    cursor: se-resize;
+}
+
+.resize-sw {
+    bottom: 0;
+    left: 0;
+    width: 12px;
+    height: 12px;
+    cursor: sw-resize;
+}
+
+.window-enter-active {
+    animation: windowOpen 0.25s cubic-bezier(0.5, 1, 0.5, 1) forwards;
+}
+
+.window-leave-active {
+    animation: windowClose 0.25s ease-in forwards;
+    pointer-events: none;
+}
+
+@keyframes windowOpen {
+    from {
+        opacity: 0;
+        transform: scale(0);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes windowClose {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0);
+    }
+}

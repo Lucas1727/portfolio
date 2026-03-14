@@ -1,9 +1,7 @@
 <template>
-  <div>
-    <NuxtLayout>
-      <NuxtPage/>
-    </NuxtLayout>
-  </div>
+  <UApp class="desktop-root" :theme="{ dark: true }">
+    <NuxtPage/>
+  </UApp>
 </template>
 
 <script setup lang="ts">
