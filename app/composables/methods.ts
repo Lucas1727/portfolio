@@ -7,6 +7,14 @@ export const getDateString = function (date: number, format: string = 'DD-MM-YYY
     return moment(date).format(format)
 }
 
+/** Get a random number between min and max
+ * @returns A random number between min and max
+ * @param min
+ * @param max */
+export function random(min: number, max: number) {
+    return Math.random() * (max - min) + min
+}
+
 /** Fetch url function that returns a promise
  * @param requestType - The request type ( POST / GET / PUT / DELETE )
  * @param url - The url to fetch

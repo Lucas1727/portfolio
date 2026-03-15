@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Cantarell:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
 @import "tailwindcss";
 @import "@nuxt/ui";
 
@@ -36,14 +38,6 @@
 }
 
 .dark, [data-theme="dark"] {
-    --ui-bg: var(--gnome-panel);
-    --ui-bg-elevated: var(--gnome-panel-2);
-    --ui-bg-muted: rgba(255 255 255 / 0.05);
-    --ui-border: var(--gnome-border);
-    --ui-border-muted: rgba(255 255 255 / 0.06);
-    --ui-text: var(--gnome-text);
-    --ui-text-muted: var(--gnome-text-dim);
-    --ui-text-highlighted: var(--gnome-text-bright);
 }
 
 *, *::before, *::after {
@@ -101,15 +95,6 @@ html, body {
     transition: width 1s cubic-bezier(0.5, 0, 0.5, 1);
 }
 
-.timeline-line {
-    position: absolute;
-    left: 7px;
-    top: 18px;
-    bottom: 0;
-    width: 2px;
-    background: var(--gnome-border);
-}
-
 @keyframes orbFloat {
     0%, 100% {
         transform: translate(0, 0) scale(1);
@@ -119,22 +104,5 @@ html, body {
     }
     66% {
         transform: translate(-100px, -200px) scale(0.5);
-    }
-}
-
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-@keyframes notifSlide {
-    from {
-        transform: translateX(110%);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
     }
 }

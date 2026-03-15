@@ -1,6 +1,11 @@
 export default defineAppConfig({
-    icon: {
-        mode: 'css',
-        cssLayer: 'base'
+    ui: {
+        toast: {
+            slots: {
+                root: 'bg-(--gnome-panel) p-4!',
+                icon: 'size-6 text-(--gnome-text)!',
+                title: 'text-(--gnome-text)'
+            },
+        }
     }
 })

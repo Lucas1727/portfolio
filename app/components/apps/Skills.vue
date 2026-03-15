@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col gap-4" style="margin: 8px">
     <div v-for="group in skills" :key="group.category">
-      <p class="text-[12px] font-bold uppercase tracking-widest text-[--gnome-text-dim] mb-3">{{ group.category }}</p>
+      <p class="text-[12px] font-bold uppercase text-(--gnome-text-dim)">{{ group.category }}</p>
       <div class="flex flex-col gap-2">
         <div v-for="skill in group.skills" :key="skill.name">
           <div class="flex justify-between">

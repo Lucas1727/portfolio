@@ -19,14 +19,12 @@ const toast = useToast()
 const timeout = 5000;
 
 onMounted(() => {
-  setTimeout(() => {
-    toast.add({
-      title: 'Welcome!',
-      description: 'Double-click icons to open apps. Try the Terminal!',
-      icon: 'i-heroicons-hand-raised',
-      color: 'primary',
-      duration: timeout
-    })
-  }, 0)
+  toast.add({
+    title: 'Welcome!',
+    description: 'Double-click icons to open apps. Try the Terminal!',
+    icon: 'i-heroicons-hand-raised',
+    color: 'neutral',
+    duration: 0
+  })
 })
 </script>

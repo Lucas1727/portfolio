@@ -8,29 +8,34 @@
       </div>
 
       <div class="absolute flex items-center right-4 gap-2 top-2">
-        <UDropdownMenu :items="wifiItems" :content="{ align: 'end', sideOffset: 6 }">
-          <UButton variant="ghost" class="text-[--gnome-text-dim] hover:text-[--gnome-text]" title="Wi-Fi">
+        <UPopover>
+          <UButton variant="ghost" class="text-(--gnome-text) hover:text-(--gnome-text) hover:bg-transparent active:bg-transparent" title="Wi-Fi">
             <UIcon name="i-heroicons-wifi" class="size-6"/>
           </UButton>
-        </UDropdownMenu>
 
-        <UButton variant="ghost" class="text-[--gnome-text-dim] hover:text-[--gnome-text]" title="Audio">
+          <template #content>
+            <UCard variant="solid" class="flex p-2! rounded-md gap-2 bg-(--gnome-panel) text-center">
+              <p class="text-[12px] text-(--gnome-text-dim)">portfolio.faenor.co.uk</p>
+              <p class="text-[12px] text-(--gnome-text-dim)">{{ ping }} ping</p>
+            </UCard>
+          </template>
+        </UPopover>
+
+        <UButton variant="ghost" class="text-(--gnome-text-dim) hover:text-(--gnome-text) hover:bg-transparent active:bg-transparent" title="Audio">
           <UIcon name="i-heroicons-speaker-wave" class="size-6"/>
         </UButton>
 
-        <UDropdownMenu :items="powerItems" :content="{ align: 'end', sideOffset: 6 }">
-          <UButton variant="ghost" class="text-[--gnome-text-dim] hover:text-[--gnome-text]" title="Power">
-            <UIcon name="i-heroicons-power" class="size-6"/>
-          </UButton>
-        </UDropdownMenu>
+        <!--        <UDropdownMenu :items="powerItems" :content="{ align: 'end', sideOffset: 6 }">-->
+        <UButton variant="ghost" class="text-(--gnome-text-dim) hover:text-(--gnome-text) hover:bg-transparent active:bg-transparent" title="Power">
+          <UIcon name="i-heroicons-power" class="size-6"/>
+        </UButton>
+        <!--        </UDropdownMenu>-->
       </div>
     </UDashboardNavbar>
   </UDashboardPanel>
 </template>
 
 <script setup lang="ts">
-import {getDateString} from "~/assets/ts/methods";
-
 const dateTime = ref<string>('')
 const host = ref<string>('portfolio.faenor.co.uk');
 const ping = ref<number>(0);
@@ -50,12 +55,6 @@ function updatePing() {
     ping.value = 999;
   })
 }
-
-const wifiItems = [
-  {
-    label: `Ping: ${ping.value}`, icon: 'i-heroicons-wifi'
-  }
-]
 
 const powerItems = [
   {label: 'Lock Screen', icon: 'i-heroicons-lock-closed'},

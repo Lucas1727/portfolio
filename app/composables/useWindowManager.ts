@@ -67,7 +67,7 @@ export function useWindowManager() {
             win.isMaximized = false
         } else {
             win.prevBounds = {x: win.x, y: win.y, width: win.width, height: win.height}
-            Object.assign(win, {x: 0, y: 0, width: window.innerWidth, height: window.innerHeight - 40})
+            Object.assign(win, {x: 0, y: 0, width: window.innerWidth, height: window.innerHeight - 110})
             win.isMaximized = true
         }
     }

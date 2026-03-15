@@ -10,7 +10,7 @@
     <div class="window-titlebar select-none" @mousedown.self="startDrag" @dblclick="doMaximize">
       <div class="absolute flex items-center left-1/2 -translate-x-1/2 gap-2 pointer-events-none">
         <span class="text-[14px] font-semibold"
-              :class="window.isFocused ? 'text-(--gnome-text)' : 'text-[--gnome-text-dim]'">
+              :class="window.isFocused ? 'text-(--gnome-text)' : 'text-(--gnome-text-dim)'">
           {{ window.title }}
         </span>
       </div>
@@ -23,15 +23,15 @@
 
       <div class="flex items-center gap-2">
         <UTooltip text="Minimize" :delay="{ open: 500 }">
-          <UButton class="traffic-btn bg-(--traffic-green) hover:bg-(--traffic-green)" icon="mdi-minimize" @click.stop="minimize" aria-label="Minimize"></UButton>
+          <UButton class="traffic-btn bg-(--traffic-green) hover:bg-(--traffic-green) active:bg-(--traffic-green)" icon="mdi-minimize" @click.stop="minimize" aria-label="Minimize"></UButton>
         </UTooltip>
 
         <UTooltip text="Maximize" :delay="{ open: 500 }">
-          <UButton class="traffic-btn bg-(--traffic-amber) hover:bg-(--traffic-amber)" icon="mdi-maximize" @click.stop="doMaximize" aria-label="Maximize"></UButton>
+          <UButton class="traffic-btn bg-(--traffic-amber) hover:bg-(--traffic-amber) active:bg-(--traffic-amber)" icon="mdi-maximize" @click.stop="doMaximize" aria-label="Maximize"></UButton>
         </UTooltip>
 
         <UTooltip text="Close" :delay="{ open: 500 }">
-          <UButton class="traffic-btn bg-(--traffic-red) hover:bg-(--traffic-red)" icon="mdi-close" @click.stop="close" aria-label="Close"></UButton>
+          <UButton class="traffic-btn bg-(--traffic-red) hover:bg-(--traffic-red) active:bg-(--traffic-red)" icon="mdi-close" @click.stop="close" aria-label="Close"></UButton>
         </UTooltip>
       </div>
     </div>
