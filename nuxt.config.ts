@@ -4,14 +4,10 @@ export default defineNuxtConfig({
 
     app: {
         head: {
-            link: [{rel: 'icon', type: 'image/png', href: ""}]
+            title: 'Lucas Ridge - Full-Stack Developer',
+            link: [{rel: 'icon', type: 'image/png', href: ""}],
+            meta: [{name: 'viewport', content: 'width=device-width, initial-scale=1'}],
         },
-    },
-
-    build: {
-        transpile: [
-            'vuetify',
-        ],
     },
 
     colorMode: {
@@ -26,14 +22,13 @@ export default defineNuxtConfig({
     },
 
     css: [
-        'vuetify/lib/styles/main.sass',
         '@mdi/font/css/materialdesignicons.min.css',
-        '~/assets/scss/global.scss'
+        '~/assets/css/main.css'
     ],
 
     devtools: {enabled: false},
 
-    modules: ['@nuxtjs/color-mode', '@nuxtjs/tailwindcss'],
+    modules: ['@nuxt/ui', '@nuxtjs/color-mode', '@nuxt/icon'],
 
     routeRules: {},
 
@@ -42,10 +37,6 @@ export default defineNuxtConfig({
             buildId: process.env.BUILD_ID,
             buildHash: process.env.BUILD_HASH,
         }
-    },
-
-    schemaOrg: {
-        enabled: false
     },
 
     site: {

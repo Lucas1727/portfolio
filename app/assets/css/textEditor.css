@@ -1,0 +1,36 @@
+.editor-gutter {
+    width: 46px;
+    background: rgba(12 12 22 / 0.5);
+    border-right: 1px solid var(--gnome-border);
+    padding: 10px 0;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.editor-line-num {
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 10px;
+    font-size: 11.5px;
+    font-family: var(--font-mono), monospace;
+    color: rgba(255 255 255 / 0.15);
+    line-height: 1.54;
+}
+
+.editor-textarea {
+    flex: 1;
+    padding: 10px 16px;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #cdd6f4;
+    font-family: var(--font-mono), monospace;
+    font-size: 13px;
+    line-height: 1.54;
+    resize: none;
+    white-space: pre;
+    overflow: auto;
+    tab-size: 2;
+}
