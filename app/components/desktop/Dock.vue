@@ -40,14 +40,10 @@ function clickIcon(app: typeof apps[0]) {
 
   const def = getApp(app.id)!
   const vw = window.innerWidth, vh = window.innerHeight - 40
+  const x = Math.floor((vw - def.defaultWidth) / 2), y = Math.max(40, Math.floor((vh - def.defaultHeight) / 2))
+  const width = def.defaultWidth, height = def.defaultHeight
 
-  openWindow({
-    appId: app.id, title: app.name, icon: app.icon, component: app.component,
-    x: Math.floor((vw - def.defaultWidth) / 2),
-    y: Math.max(40, Math.floor((vh - def.defaultHeight) / 2)),
-    width: def.defaultWidth, height: def.defaultHeight,
-    minWidth: def.minWidth ?? 320, minHeight: def.minHeight ?? 240
-  })
+  openWindow({appId: app.id, title: app.name, icon: app.icon, component: app.component, x, y, width: width, height: height, minWidth: def.minWidth ?? 320, minHeight: def.minHeight ?? 240})
 }
 </script>
 

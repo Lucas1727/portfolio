@@ -7,17 +7,28 @@ export function useWindowManager() {
 
     function openWindow(app: Omit<AppWindow, 'id' | 'zIndex' | 'isMinimized' | 'isMaximized' | 'isFocused'>) {
         const existing = (windows.value as AppWindow[]).find(w => w.appId === app.appId)
+        const vw = window.innerWidth, vh = window.innerHeight - 40
 
+        let mobile = app.width > vw
+
+        if (mobile) {
+            app.width = vw
+            app.x = Math.floor((vw - app.width) / 2)
+            app.y = Math.max(40, Math.floor((vh - app.width) / 2))
+        }
 
         if (existing) {
             focusWindow(existing.id)
             if (existing.isMinimized) existing.isMinimized = false
             return existing.id
         }
+
         const id = `win-${nextId.value++}`;
 
         (windows.value as AppWindow[]).forEach(w => (w.isFocused = false))
         windows.value.push({...app, id, zIndex: nextZIndex.value++, isMinimized: false, isMaximized: false, isFocused: true} as AppWindow)
+
+        if (mobile) toggleMaximize(id)
 
         return id
     }
@@ -34,7 +45,6 @@ export function useWindowManager() {
         const appWindow = (windows.value as AppWindow[]).find(w => w.id === id)
 
         if (appWindow) appWindow.zIndex = nextZIndex.value++
-
     }
 
     function minimizeWindow(id: string) {
@@ -48,6 +58,8 @@ export function useWindowManager() {
 
     function maximizeWindow(id: string) {
         const appWindow = (windows.value as AppWindow[]).find(w => w.id === id)
+
+        console.log(`Maximizing window ${id}`)
 
         if (appWindow) {
             appWindow.isMinimized = false;
@@ -67,7 +79,7 @@ export function useWindowManager() {
             win.isMaximized = false
         } else {
             win.prevBounds = {x: win.x, y: win.y, width: win.width, height: win.height}
-            Object.assign(win, {x: 0, y: 0, width: window.innerWidth, height: window.innerHeight - 110})
+            Object.assign(win, {x: 0, y: 0, width: window.innerWidth, height: window.innerHeight - 120})
             win.isMaximized = true
         }
     }
