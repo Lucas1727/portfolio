@@ -37,7 +37,7 @@
 
 <script setup lang="ts">
 const dateTime = ref<string>('')
-const host = ref<string>('portfolio.faenor.co.uk');
+const host = ref<string>('https://portfolio.faenor.co.uk');
 const ping = ref<number>(0);
 
 let interval: ReturnType<typeof setInterval>
