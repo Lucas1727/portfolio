@@ -29,7 +29,7 @@
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--gnome-border);
     flex-shrink: 0;
-    cursor: default;
+    cursor: move;
 }
 
 .window-content {
