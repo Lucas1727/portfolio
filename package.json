@@ -16,7 +16,7 @@
   "dependencies": {
     "@mdi/font": "^7.4.47",
     "@nuxt/icon": "^2.2.1",
-    "@nuxt/ui": "^4.5.1",
+    "@nuxt/ui": "^4.6.1",
     "@nuxtjs/color-mode": "^3.4.4",
     "moment": "^2.30.1",
     "nuxt": "^4.4.2",
