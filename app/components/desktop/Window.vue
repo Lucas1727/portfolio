@@ -1,5 +1,6 @@
 <template>
-  <div ref="windowElement"
+  <div :id="window.id"
+       ref="windowElement"
        class="window-base"
        :class="{ focused: window.isFocused, maximized: window.isMaximized }"
        :style="windowStyle"
