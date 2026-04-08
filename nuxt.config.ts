@@ -28,7 +28,7 @@ export default defineNuxtConfig({
 
     devtools: {enabled: false},
 
-    modules: ['@nuxt/ui', '@nuxtjs/color-mode', '@nuxt/icon'],
+    modules: ['@nuxt/ui', '@nuxtjs/color-mode', '@nuxt/icon', '@nuxt/test-utils/module'],
 
     routeRules: {},
 
