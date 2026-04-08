@@ -91,7 +91,7 @@ function getStyle() {
 const whatIUse = [
   'logos:vue', 'logos:nuxt-icon', 'logos:typescript-icon', 'devicon:tailwindcss',
   'logos:kotlin-icon', 'logos:python', 'logos:postgresql', 'devicon:csharp',
-  'logos:docker-icon', 'logos:aws', 'logos:mysql', 'logos:electron', 'logos:unity',
+  'logos:docker-icon', 'logos:aws', 'logos:mysql', 'logos:electron', 'mdi:unity', 'logos:java'
 ]
 
 const links = [

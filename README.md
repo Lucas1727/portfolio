@@ -1,75 +1,35 @@
-# Nuxt 3 Minimal Starter
+# Portfolio Webpage
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+This is my personal portfolio webpage built with **Nuxt 4**, utilizing **TypeScript** for scripting and **Nuxt UI** library for Vue components.
 
-## Setup
+The production version of the website can be viewed [here](https://portfolio.faenor.co.uk).
 
-Make sure to install the dependencies:
+## Running Locally
 
-```bash
-# npm
-npm install
+To run this webpage locally:
 
-# pnpm
-pnpm install
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-# yarn
-yarn install
+2. Start the development server:
+   ```bash
+   npm run dev
+   ```
 
-# bun
-bun install
-```
+3. Open your browser and navigate to `http://localhost:3000`
 
-## Development Server
+## Building for Production
 
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
+To build the application for production:
 
 ```bash
-# npm
 npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
 ```
 
-Locally preview production build:
+To preview the production build:
 
 ```bash
-# npm
 npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
 ```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
