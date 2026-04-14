@@ -7,16 +7,16 @@
         </p>
       </div>
 
-      <div class="absolute flex items-center right-4 gap-2 top-2">
+      <div class="absolute flex items-center right-4 gap-2 top-0 h-10">
         <UPopover>
           <UButton variant="ghost" class="text-(--gnome-text) hover:text-(--gnome-text) hover:bg-transparent active:bg-transparent" title="Wi-Fi">
             <UIcon name="i-heroicons-wifi" class="size-6"/>
           </UButton>
 
           <template #content>
-            <UCard variant="solid" class="flex p-2! rounded-md gap-2 bg-(--gnome-panel) text-center">
-              <p class="text-[12px] text-(--gnome-text-dim)">portfolio.faenor.co.uk</p>
-              <p class="text-[12px] text-(--gnome-text-dim)">{{ ping }} ping</p>
+            <UCard variant="solid" class="flex rounded-md gap-2 bg-(--gnome-panel) text-center">
+              <p class="text-sm text-(--gnome-text-dim)">portfolio.faenor.co.uk</p>
+              <p class="text-sm text-(--gnome-text-dim)">{{ ping }} ping</p>
             </UCard>
           </template>
         </UPopover>

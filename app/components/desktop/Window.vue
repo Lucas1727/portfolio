@@ -10,14 +10,13 @@
 
     <div class="window-titlebar select-none" @mousedown.self="startDrag" @dblclick="doMaximize">
       <div class="absolute flex items-center left-1/2 -translate-x-1/2 gap-2 pointer-events-none">
-        <span class="text-[14px] font-semibold"
-              :class="window.isFocused ? 'text-(--gnome-text)' : 'text-(--gnome-text-dim)'">
+        <span class="text-md font-semibold" :class="window.isFocused ? 'text-(--gnome-text)' : 'text-(--gnome-text-dim)'">
           {{ window.title }}
         </span>
       </div>
 
       <div class="flex items-center gap-2">
-        <UButton class="text-(--gnome-text)" variant="ghost" :icon="window.icon"></UButton>
+        <UIcon :name="window.icon" class="text-(--gnome-text) size-6"/>
       </div>
 
       <div class="flex-1"/>
@@ -51,13 +50,13 @@
 import About from '~/components/apps/About.vue'
 import Skills from '~/components/apps/Skills.vue'
 import Terminal from '~/components/apps/Terminal.vue'
-import TextEditor from '~/components/apps/TextEditor.vue'
 import Experience from "~/components/apps/Experience.vue";
+import Workflow from "~/components/apps/Workflow.vue";
 
 const {closeWindow, focusWindow, minimizeWindow, toggleMaximize, updateWindowBounds} = useWindowManager()
 
 const APP_COMPONENTS: Record<string, any> = {
-  AboutApp: About, ExperienceApp: Experience, SkillsApp: Skills, TerminalApp: Terminal, TextEditorApp: TextEditor,
+  AboutApp: About, ExperienceApp: Experience, SkillsApp: Skills, TerminalApp: Terminal, WorkflowApp: Workflow
 }
 
 const props = defineProps<{ window: AppWindow }>()

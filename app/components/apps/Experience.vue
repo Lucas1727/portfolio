@@ -3,10 +3,11 @@
     <UTimeline :items="experience" color="neutral" class="gap-4">
       <template #title="{ item }">
         <div class="flex items-center gap-1">
-          <h1 class="text-(--gnome-text) text-[14px]">{{ item.title }}</h1>
-          <h1 class="text-(--gnome-text-dim)">{{ item.company }}</h1>
+          <h1 class="text-(--gnome-text) text-lg">{{ item.title }}</h1>
+          <h2 class="text-(--gnome-text-dim) text-lg">{{ item.company }}</h2>
         </div>
       </template>
+
       <template #description="{ item }">
         <div class="flex flex-col gap-1">
           <h1 v-for="description in item.description" class="text-(--gnome-text-dim)">{{ description }}</h1>

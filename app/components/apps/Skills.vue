@@ -1,11 +1,11 @@
 <template>
   <div class="flex flex-col gap-4" style="margin: 8px">
     <div v-for="group in skills" :key="group.category">
-      <p class="text-[12px] font-bold uppercase text-(--gnome-text-dim)">{{ group.category }}</p>
+      <p class="text-sm font-bold uppercase text-(--gnome-text-dim)">{{ group.category }}</p>
       <div class="flex flex-col gap-2">
         <div v-for="skill in group.skills" :key="skill.name">
           <div class="flex justify-between">
-            <p class="text-[14px] text-(--gnome-text) justify my-auto">
+            <p class="text-md text-(--gnome-text) justify my-auto">
               <UIcon :name="skill.icon" class="size-4"/>
               {{ skill.name }}
             </p>

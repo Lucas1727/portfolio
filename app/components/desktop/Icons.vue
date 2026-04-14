@@ -3,7 +3,7 @@
     <UButton v-for="app in apps" :key="app.id" class="flex flex-col items-center border-2 border-transparent hover:bg-transparent text-(--gnome-text)" variant="ghost"
              @dblclick="launch(app)" @click="activeId = app.id" @blur="activeId = null" :title="app.description" :aria-label="`Open ${app.name}`">
       <UIcon :name="app.icon" class="size-16 hover:scale-120 transition-all duration-100"/>
-      <span class="text-[12px] font-semibold text-center text(--gnome-text) wrap-break-word">
+      <span class="text-sm font-semibold text-center text(--gnome-text) wrap-break-word">
         {{ app.name }}
       </span>
     </UButton>

@@ -21,14 +21,11 @@ export default defineNuxtConfig({
         storageKey: 'nuxt-color-mode'
     },
 
-    css: [
-        '@mdi/font/css/materialdesignicons.min.css',
-        '~/assets/css/main.css'
-    ],
+    css: ['~/assets/css/main.css'],
 
     devtools: {enabled: false},
 
-    modules: ['@nuxt/ui', '@nuxtjs/color-mode', '@nuxt/icon', '@nuxt/test-utils/module'],
+    modules: ['@nuxt/ui', '@nuxt/test-utils/module'],
 
     routeRules: {},
 
