@@ -20,7 +20,7 @@ function launch(app: typeof apps[0]) {
   const vh = window.innerHeight - 40
 
   openWindow({
-    appId: app.id, title: app.name, icon: app.icon, component: app.component,
+    id: app.id, title: app.name, icon: app.icon, component: app.component,
     x: Math.floor((vw - app.defaultWidth) / 2),
     y: Math.max(40, Math.floor((vh - app.defaultHeight) / 2)),
     width: app.defaultWidth, height: app.defaultHeight,

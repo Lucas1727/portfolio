@@ -1,12 +1,11 @@
 const windows = ref<AppWindow[]>([])
 const nextZIndex = ref(100)
-const nextId = ref(1)
 
 export function useWindowManager() {
     const focusedWindowId = computed(() => [...(windows.value as AppWindow[])].filter(w => !w.isMinimized).sort((a, b) => b.zIndex - a.zIndex)[0]?.id ?? null)
 
-    function openWindow(app: Omit<AppWindow, 'id' | 'zIndex' | 'isMinimized' | 'isMaximized' | 'isFocused'>) {
-        const existing = (windows.value as AppWindow[]).find(w => w.appId === app.appId)
+    function openWindow(app: Omit<AppWindow, 'zIndex' | 'isMinimized' | 'isMaximized' | 'isFocused'>) {
+        const existing = (windows.value as AppWindow[]).find(w => w.id === app.id)
         const vw = window.innerWidth, vh = window.innerHeight - 40
 
         let mobile = app.width > vw
@@ -23,14 +22,10 @@ export function useWindowManager() {
             return existing.id
         }
 
-        const id = `win-${nextId.value++}`;
-
         (windows.value as AppWindow[]).forEach(w => (w.isFocused = false))
-        windows.value.push({...app, id, zIndex: nextZIndex.value++, isMinimized: false, isMaximized: false, isFocused: true} as AppWindow)
+        windows.value.push({...app, zIndex: nextZIndex.value++, isMinimized: false, isMaximized: false, isFocused: true} as AppWindow)
 
-        if (mobile) toggleMaximize(id)
-
-        return id
+        if (mobile) toggleMaximize(app.id)
     }
 
     function closeWindow(id: string) {

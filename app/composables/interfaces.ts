@@ -12,7 +12,6 @@ export interface AppDefinition {
 
 export interface AppWindow {
     id: string
-    appId: string
     title: string
     icon: string
     component: string

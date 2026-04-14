@@ -16,15 +16,15 @@ const {apps, getApp} = useApps()
 const {windows, openWindow, focusWindow, maximizeWindow, minimizeWindow} = useWindowManager()
 const hovered = ref<string | null>(null)
 
-const isRunning = (id: string) => (windows as any).value.some((w: any) => w.appId === id)
-const isFocused = (id: string) => (windows as any).value.some((w: any) => w.appId === id && w.isFocused && !w.isMinimized)
+const isRunning = (id: string) => (windows as any).value.some((w: any) => w.id === id)
+const isFocused = (id: string) => (windows as any).value.some((w: any) => w.id === id && w.isFocused && !w.isMinimized)
 
 const runningApps = computed(() => {
   return apps.filter(app => isRunning(app.id))
 })
 
 function clickIcon(app: typeof apps[0]) {
-  const existing = (windows as any).value.find((w: any) => w.appId === app.id)
+  const existing = (windows as any).value.find((w: any) => w.id === app.id)
 
   if (existing) {
     if (existing.isMinimized) {
@@ -43,7 +43,7 @@ function clickIcon(app: typeof apps[0]) {
   const x = Math.floor((vw - def.defaultWidth) / 2), y = Math.max(40, Math.floor((vh - def.defaultHeight) / 2))
   const width = def.defaultWidth, height = def.defaultHeight
 
-  openWindow({appId: app.id, title: app.name, icon: app.icon, component: app.component, x, y, width: width, height: height, minWidth: def.minWidth ?? 320, minHeight: def.minHeight ?? 240})
+  openWindow({id: app.id, title: app.name, icon: app.icon, component: app.component, x, y, width: width, height: height, minWidth: def.minWidth ?? 320, minHeight: def.minHeight ?? 240})
 }
 </script>
 
