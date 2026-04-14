@@ -1,21 +1,21 @@
 <template>
   <div class="flex flex-col overflow-y-auto">
     <div class="flex bg-(--gnome-panel-2)">
-      <div class="flex flex-col gap-2" style="margin: 8px">
+      <div class="flex flex-col gap-2 m-2">
         <h1 class="text-xl font-bold text-(--gnome-text)">Lucas Ridge</h1>
         <p class="text-md text-(--gnome-text-dim)">Full-Stack Developer</p>
       </div>
 
       <div class="flex-1"></div>
 
-      <div class="flex gap-2 items-end" style="margin: 8px">
+      <div class="flex gap-2 items-end m-2">
         <UButton v-for="link in links" :to="link.href" target="_blank" variant="ghost" color="neutral" :leading-icon="link.icon" class="text-(--gnome-text) hover:text-(--gnome-panel-2) p-1!">
           {{ link.label }}
         </UButton>
       </div>
     </div>
 
-    <div class="flex flex-col gap-2" style="margin: 8px">
+    <div class="flex flex-col gap-2 m-2">
       <p class="flex items-center gap-2 font-bold text-sm text-(--gnome-text-dim) uppercase">
         <UIcon name="mdi:account" class="size-4"/>
         About
@@ -59,7 +59,7 @@
           <div class="absolute inset-0 bg-black/80 transition-all duration-200 hover:bg-black/90"/>
 
           <p class="relative z-10 text-lg font-bold">{{ item.title }}</p>
-          <p class="relative z-10 text-md">{{ item.desc }}</p>
+          <p class="relative z-10 text-md font-semibold">{{ item.desc }}</p>
         </UButton>
       </div>
 

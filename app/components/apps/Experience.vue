@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col gap-4" style="margin: 8px">
+  <div class="flex flex-col gap-4 m-2">
     <UTimeline :items="experience" color="neutral" class="gap-4">
       <template #title="{ item }">
         <div class="flex items-center gap-1">

@@ -11,8 +11,8 @@
 </template>
 
 <script setup lang="ts">
-const {apps} = useApps()
-const {openWindow} = useWindowManager()
+const {apps} = applications()
+const {openWindow} = windowManager()
 const activeId = ref<string | null>(null)
 
 function launch(app: typeof apps[0]) {

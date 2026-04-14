@@ -1,7 +1,7 @@
 const windows = ref<AppWindow[]>([])
 const nextZIndex = ref(100)
 
-export function useWindowManager() {
+export function windowManager() {
     const focusedWindowId = computed(() => [...(windows.value as AppWindow[])].filter(w => !w.isMinimized).sort((a, b) => b.zIndex - a.zIndex)[0]?.id ?? null)
 
     function openWindow(app: Omit<AppWindow, 'zIndex' | 'isMinimized' | 'isMaximized' | 'isFocused'>) {

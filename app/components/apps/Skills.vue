@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col gap-4" style="margin: 8px">
+  <div class="flex flex-col gap-4 m-2">
     <div v-for="group in skills" :key="group.category">
       <p class="text-sm font-bold uppercase text-(--gnome-text-dim)">{{ group.category }}</p>
       <div class="flex flex-col gap-2">

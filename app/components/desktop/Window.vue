@@ -53,7 +53,7 @@ import Terminal from '~/components/apps/Terminal.vue'
 import Experience from "~/components/apps/Experience.vue";
 import Workflow from "~/components/apps/Workflow.vue";
 
-const {closeWindow, focusWindow, minimizeWindow, toggleMaximize, updateWindowBounds} = useWindowManager()
+const {closeWindow, focusWindow, minimizeWindow, toggleMaximize, updateWindowBounds} = windowManager()
 
 const APP_COMPONENTS: Record<string, any> = {
   AboutApp: About, ExperienceApp: Experience, SkillsApp: Skills, TerminalApp: Terminal, WorkflowApp: Workflow

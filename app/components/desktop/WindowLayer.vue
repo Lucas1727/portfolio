@@ -9,6 +9,6 @@
 <script setup lang="ts">
 import Window from "~/components/desktop/Window.vue";
 
-const {windows} = useWindowManager()
+const {windows} = windowManager()
 const visibleWindows = computed(() => (windows as any).value.filter((w: any) => !w.isMinimized))
 </script>

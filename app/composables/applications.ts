@@ -42,10 +42,21 @@ export const APP_REGISTRY: AppDefinition[] = [
         minWidth: 480,
         minHeight: 360,
         description: 'Interactive terminal',
-    }
+    },
+    {
+        id: 'workflow',
+        name: 'Workflow',
+        icon: 'clarity:flow-chart-line',
+        component: 'WorkflowApp',
+        defaultWidth: 720,
+        defaultHeight: 480,
+        minWidth: 480,
+        minHeight: 360,
+        description: 'Workflow',
+    },
 ]
 
-export function useApps() {
+export function applications() {
     function getApp(id: string) {
         return APP_REGISTRY.find(a => a.id === id)
     }

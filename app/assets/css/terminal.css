@@ -4,7 +4,7 @@
     flex-direction: column;
     background: color-mix(in srgb, var(--gnome-bg) 50%, transparent);
     font-family: var(--font-mono), monospace;
-    font-size: 13px;
+    font-size: 14px;
     line-height: 1.56;
     cursor: text;
 }
@@ -30,7 +30,7 @@
     outline: none;
     color: #cdd6f4;
     font-family: var(--font-mono), monospace;
-    font-size: 13px;
+    font-size: 14px;
     caret-color: var(--gnome-blue);
 }
 
@@ -44,5 +44,5 @@
     white-space: nowrap;
     flex-shrink: 0;
     font-family: var(--font-mono), monospace;
-    font-size: 13px;
+    font-size: 14px;
 }

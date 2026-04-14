@@ -12,8 +12,10 @@
 </template>
 
 <script setup lang="ts">
-const {apps, getApp} = useApps()
-const {windows, openWindow, focusWindow, maximizeWindow, minimizeWindow} = useWindowManager()
+import {applications} from "~/composables/applications";
+
+const {apps, getApp} = applications()
+const {windows, openWindow, focusWindow, maximizeWindow, minimizeWindow} = windowManager()
 const hovered = ref<string | null>(null)
 
 const isRunning = (id: string) => (windows as any).value.some((w: any) => w.id === id)
