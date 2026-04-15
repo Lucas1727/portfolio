@@ -11,7 +11,7 @@
       </UButton>
     </div>
 
-    <code class="flex flex-col gap-2 p-4 font-(--font-mono) bg-(--gnome-bg)">{{ code }}</code>
+    <code class="flex flex-col gap-2 p-4 whitespace-pre-wrap font-(--font-mono) bg-(--gnome-bg)">{{ code }}</code>
   </div>
 </template>
 

@@ -4,25 +4,27 @@ test.describe('E2E Tests', () => {
 
     test.setTimeout(300_000)
 
-    test('homepage loads successfully', async ({page}) => {
+    test.beforeEach(async ({page}) => {
         await page.goto('/')
         await page.waitForLoadState('networkidle')
 
+        const popup = page.locator('.window-base').first()
+        await expect(popup).toBeVisible()
+
+        await popup.getByRole('button', {name: 'Close'}).click()
+        await expect(popup).not.toBeVisible()
+    })
+
+    test('homepage loads successfully', async ({page}) => {
         await expect(page).toHaveTitle(/Lucas Ridge - Full-Stack Developer/)
     })
 
     test('displays welcome toast on load', async ({page}) => {
-        await page.goto('/')
-        await page.waitForLoadState('networkidle')
-
         const welcomeText = page.getByText('Welcome!').first()
         await expect(welcomeText).toBeVisible({timeout: 10000})
     })
 
     test('desktop components are visible', async ({page}) => {
-        await page.goto('/')
-        await page.waitForLoadState('networkidle')
-
         const body = await page.locator('body')
         await expect(body).toBeVisible()
     })
@@ -37,11 +39,8 @@ test.describe('E2E Tests', () => {
     })
 
     test('window can be opened and closed', async ({page}) => {
-        await page.goto('/')
-        await page.waitForLoadState('networkidle')
-
-        const aboutIcon = page.getByRole('button', {name: /about/i}).first()
-        await aboutIcon.click()
+        const aboutIcon = page.getByRole('button', {name: 'about'}).first()
+        await aboutIcon.dblclick()
 
         const window = page.locator('.window-base').first()
         await expect(window).toBeVisible()
@@ -53,11 +52,8 @@ test.describe('E2E Tests', () => {
     })
 
     test('window can be minimized', async ({page}) => {
-        await page.goto('/')
-        await page.waitForLoadState('networkidle')
-
-        const aboutIcon = page.getByRole('button', {name: /about/i}).first()
-        await aboutIcon.click()
+        const aboutIcon = page.getByRole('button', {name: 'about'}).first()
+        await aboutIcon.dblclick()
 
         const window = page.locator('.window-base').first()
         await expect(window).toBeVisible()
@@ -69,11 +65,8 @@ test.describe('E2E Tests', () => {
     })
 
     test('window can be maximized and restored', async ({page}) => {
-        await page.goto('/')
-        await page.waitForLoadState('networkidle')
-
-        const aboutIcon = page.getByRole('button', {name: /about/i}).first()
-        await aboutIcon.click()
+        const aboutIcon = page.getByRole('button', {name: 'about'}).first()
+        await aboutIcon.dblclick()
 
         const window = page.locator('.window-base').first()
         await expect(window).toBeVisible()
@@ -92,11 +85,8 @@ test.describe('E2E Tests', () => {
     })
 
     test('weblinks work in About window', async ({page}) => {
-        await page.goto('/')
-        await page.waitForLoadState('networkidle')
-
-        const aboutIcon = page.getByRole('button', {name: /about/i}).first()
-        await aboutIcon.click()
+        const aboutIcon = page.getByRole('button', {name: 'about'}).first()
+        await aboutIcon.dblclick()
 
         const window = page.locator('.window-base').first()
         await expect(window).toBeVisible()

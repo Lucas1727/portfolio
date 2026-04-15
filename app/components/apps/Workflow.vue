@@ -7,27 +7,73 @@
 
     <div class="flex flex-col gap-4 m-2">
       <div class="flex flex-col gap-2 p-2 rounded-xl border border-(--gnome-border)">
-        <h2 class="text-xl font-semibold">Initialization</h2>
-        <p>Created a new Nuxt 4 project:</p>
+        <h2 class="m-2 text-xl font-semibold">Introduction</h2>
+        <p class="mx-2">Here is a quick little guide to the creation and deployment workflow of how I made this portfolio page using NUXT.</p>
+        <p class="mx-2">The inspiration for this webpage was to base it on the gnome Linux desktop environment.
+          Instead of navigating several webpages like an ordinary website, I thought why not show information using desktop windows that you can open, close and resize.
+          I preferred this over a traditional website as it felt more engaging and fun to create, while also showing off some of my frontend skills in a unique way.
+          In addition to this I can easily add more content or features by adding a new app to the desktop.
+        </p>
+      </div>
+    </div>
+
+    <div class="flex flex-col gap-4 m-2">
+      <div class="flex flex-col gap-2 p-2 rounded-xl border border-(--gnome-border)">
+        <h2 class="m-2 text-xl font-semibold">Initialization</h2>
+        <p class="mx-2"></p>
+        <p class="mx-2">Create a new Nuxt 4 project and open the folder</p>
         <CodeBlock lang="bash" code="npx nuxi@latest init portfolio"/>
-        <p>Installed Dependencies (NUXT UI and Tailwind CSS)</p>
+
+        <p class="mx-2 mt-4">Install Dependencies (NUXT UI and Tailwind CSS)</p>
         <CodeBlock lang="bash" code="npm install @nuxt/ui tailwindcss"/>
-        <p>Run the webpage in development mode</p>
+
+        <p class="mx-2 mt-4">Run the webpage in development mode</p>
         <CodeBlock lang="bash" code="npm run dev"/>
       </div>
 
       <div class="flex flex-col gap-2 p-2 rounded-xl border border-(--gnome-border)">
-        <h2 class="text-xl font-semibold">Development</h2>
-        <p>Created some Vue components, global styling and typescript composables</p>
-        <UTree :items="items"/>
+        <h2 class="m-2 text-xl font-semibold">Development</h2>
+        <p class="mx-2">Create some Vue components, global styling and typescript composables to flesh out the webpage and give it some content.</p>
+        <p class="mx-2">Feel free to browse some of the files for this project below or view the source code on GitHub.
+          <UButton variant="ghost" class="p-0 size-2 text-(--gnome-text-dim) hover:text-(--gnome-text) bg-transparent hover:bg-transparent" icon="mdi:github" @click="openGitHub"/>
+        </p>
+
+        <UTree :items="fileTreeItems" class="rounded-xl border border-(--gnome-border) p-2"/>
+
+        <p class="mx-2">For this specific project new content is added to the webpage by creating a Vue component in
+          <CodeSnippet code="~/app/components/apps"></CodeSnippet>
+          and then adding it to the applications composable in
+          <CodeSnippet code="~/app/composables/applications.ts"></CodeSnippet>
+          to make a new desktop application that will show content in a window.
+        </p>
+
+        <p class="mx-2">For styling I use Tailwind CSS and the NUXT UI component library, which is built on top of Tailwind. I also use some custom CSS variables for colors and fonts to make it easier to maintain a consistent style across
+          the webpage.</p>
+        <p class="mx-2">The functionality of the windows is handled by the
+          <CodeSnippet code="~/app/composables/windowManager.ts"></CodeSnippet>
+          which keeps track of the different app windows that are open and their state (minimized, maximized, focused) and provides functions to change this state.
+          The dock component then uses this composable to show the open applications and allow the user to interact with them.
+        </p>
       </div>
 
       <div class="flex flex-col gap-2 p-2 rounded-xl border border-(--gnome-border)">
-        <h2 class="text-xl font-semibold">Testing</h2>
+        <h2 class="m-2 text-xl font-semibold">Testing</h2>
+        <p class="mx-2">To test my webpage for deployment I use vitest and playwright from NUXT test-utils</p>
+        <p class="mx-2">Install dependencies for testing (NUXT test-utils, vitest, happy-dom and playwright)</p>
+        <CodeBlock lang="bash" code="npm i --save-dev @nuxt/test-utils vitest @vue/test-utils happy-dom playwright-core"/>
+
+        <p class="mx-2 mt-4">Create some test files in the tests directory and make some unit tests for webpage functionality.</p>
+        <p class="mx-2">Below is a snippet from
+          <CodeSnippet code="~/tests/e2e/basic.spec.ts"/>
+          with tests created using <b>Playwright</b>.
+        </p>
+        <p class="mx-2">The below test gets the desktop button for the given app 'about' and then double clicks it.
+          It checks the window opens and is visible, then locates the close button before checking that the window closes and it not visible anymore.</p>
+        <CodeBlock lang="TypeScript" :code="test"/>
       </div>
 
       <div class="flex flex-col gap-2 p-2 rounded-xl border border-(--gnome-border)">
-        <h2 class="text-xl font-semibold">Deployment</h2>
+        <h2 class="m-2 text-xl font-semibold">Deployment</h2>
       </div>
     </div>
   </div>
@@ -35,147 +81,34 @@
 
 <script setup lang="ts">
 import CodeBlock from "~/components/CodeBlock.vue";
-import type {TreeItem} from '@nuxt/ui'
+import CodeSnippet from "~/components/CodeSnippet.vue";
+import {fileTreeItems} from "~/composables/fileTree";
 
 defineProps<{ windowId: string }>()
 
-const baseGitHubUrl = 'https://github.com/Lucas1727/portfolio/blob/master'
+const baseGitHubUrl = 'https://github.com/Lucas1727/portfolio'
 
-const items = ref<TreeItem[]>([
-  {
-    label: 'app/',
-    defaultExpanded: true,
-    children: [
-      {
-        label: 'assets/',
-        defaultExpanded: false,
-        children: [
-          {
-            label: 'css/',
-            defaultExpanded: true,
-            children: [
-              {
-                label: 'main.css',
-                icon: 'i-vscode-icons-file-type-css',
-                onSelect() {
-                  window.open(`${baseGitHubUrl}/app/assets/css/main.css`, '_blank')?.focus()
-                }
-              },
-              {
-                label: 'window.css',
-                icon: 'i-vscode-icons-file-type-css',
-                onSelect() {
-                  window.open(`${baseGitHubUrl}/app/assets/css/window.css`, '_blank')?.focus()
-                }
-              },
-            ]
-          },
-        ]
-      },
-      {
-        label: 'components/',
-        defaultExpanded: false,
-        children: [
-          {
-            label: 'CodeBlock.vue',
-            icon: 'i-vscode-icons-file-type-vue',
-            onSelect() {
-              window.open(`${baseGitHubUrl}/app/components/CodeBlock.vue`, '_blank')?.focus()
-            }
-          },
-          {
-            label: 'apps/',
-            defaultExpanded: true,
-            children: [
-              {
-                label: 'About.vue',
-                icon: 'i-vscode-icons-file-type-vue',
-                onSelect() {
-                  window.open(`${baseGitHubUrl}/app/components/apps/About.vue`, '_blank')?.focus()
-                }
-              },
-              {
-                label: 'Experience.vue',
-                icon: 'i-vscode-icons-file-type-vue',
-                onSelect() {
-                  window.open(`${baseGitHubUrl}/app/components/apps/Experience.vue`, '_blank')?.focus()
-                }
-              },
-              {
-                label: 'Skills.vue',
-                icon: 'i-vscode-icons-file-type-vue',
-                onSelect() {
-                  window.open(`${baseGitHubUrl}/app/components/apps/Skills.vue`, '_blank')?.focus()
-                }
-              },
-              {
-                label: 'Terminal.vue',
-                icon: 'i-vscode-icons-file-type-vue',
-                onSelect() {
-                  window.open(`${baseGitHubUrl}/app/components/apps/Terminal.vue`, '_blank')?.focus()
-                }
-              },
-              {
-                label: 'Workflow.vue',
-                icon: 'i-vscode-icons-file-type-vue',
-                onSelect() {
-                  window.open(`${baseGitHubUrl}/app/components/apps/Workflow.vue`, '_blank')?.focus()
-                }
-              },
-            ]
-          },
-          {
-            label: 'desktop/',
-            defaultExpanded: true,
-            children: [
-              {
-                label: 'Window.vue',
-                icon: 'i-vscode-icons-file-type-vue',
-                onSelect() {
-                  window.open(`${baseGitHubUrl}/app/components/desktop/Window.vue`, '_blank')?.focus()
-                }
-              }
-            ]
-          }
-        ]
-      },
-      {
-        label: 'composables/',
-        defaultExpanded: false,
-        children: [
-          {
-            label: 'applications.ts',
-            icon: 'i-vscode-icons-file-type-typescript',
-            onSelect() {
-              window.open(`${baseGitHubUrl}/app/composables/applications.ts`, '_blank')?.focus()
-            }
-          },
-          {
-            label: 'windowManager.ts',
-            icon: 'i-vscode-icons-file-type-typescript',
-            onSelect() {
-              window.open(`${baseGitHubUrl}/app/composables/windowManager.ts`, '_blank')?.focus()
-            }
-          }
-        ]
-      },
-      {
-        label: 'app.vue',
-        icon: 'i-vscode-icons-file-type-vue',
-        onSelect() {
-          window.open(`${baseGitHubUrl}/app/app.vue`, '_blank')?.focus()
-        }
-      },
-    ]
-  },
-  {
-    label: 'nuxt.config.ts',
-    icon: 'i-vscode-icons-file-type-nuxt',
-    onSelect() {
-      window.open(`${baseGitHubUrl}/nuxt.config.ts`, '_blank')?.focus()
-    }
-  }
-])
+const openGitHub = () => {
+  window.open(baseGitHubUrl, '_blank')?.focus()
+}
+
+const test =
+    "import {test, expect} from '@playwright/test'\n" +
+    "\n" +
+    "test.describe('E2E Tests', () => {\n" +
+    "  test('window can be opened and closed', async ({page}) => {\n" +
+    "    const aboutIcon = page.getByRole('button', {name: 'about'}).first()\n" +
+    "    await aboutIcon.dblclick()\n" +
+    "\n" +
+    "    const window = page.locator('.window-base').first()\n" +
+    "    await expect(window).toBeVisible()\n" +
+    "\n" +
+    "    const closeButton = window.getByRole('button', {name: 'Close'})\n" +
+    "    await closeButton.click()\n" +
+    "\n" +
+    "    await expect(window).not.toBeVisible()\n" +
+    "  })\n" +
+    "})"
 </script>
 
 <style scoped>

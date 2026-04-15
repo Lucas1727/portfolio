@@ -1,7 +1,7 @@
 <template>
   <div class="fixed top-16 left-4 z-5 flex flex-col flex-wrap gap-2">
     <UButton v-for="app in apps" :key="app.id" class="flex flex-col items-center border-2 border-transparent hover:bg-transparent text-(--gnome-text)" variant="ghost"
-             @dblclick="launch(app)" @click="activeId = app.id" @blur="activeId = null" :title="app.description" :aria-label="`Open ${app.name}`">
+             @dblclick="launch(app)" @click="activeId = app.id" @blur="activeId = null" :title="app.description" :aria-label="app.name">
       <UIcon :name="app.icon" class="size-16 hover:scale-120 transition-all duration-100"/>
       <span class="text-sm font-semibold text-center text(--gnome-text) wrap-break-word">
         {{ app.name }}
