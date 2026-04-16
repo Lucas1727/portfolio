@@ -14,6 +14,8 @@ export function windowManager() {
             app.width = vw
             app.x = Math.floor((vw - app.width) / 2)
             app.y = Math.max(40, Math.floor((vh - app.width) / 2))
+        } else {
+            app.y -= 40
         }
 
         if (existing) {

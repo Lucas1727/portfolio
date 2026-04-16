@@ -58,22 +58,35 @@
 
       <div class="flex flex-col gap-2 p-2 rounded-xl border border-(--gnome-border)">
         <h2 class="m-2 text-xl font-semibold">Testing</h2>
-        <p class="mx-2">To test my webpage for deployment I use vitest and playwright from NUXT test-utils</p>
+        <p class="mx-2">To test my webpage for deployment I use vitest and playwright from NUXT test-utils.</p>
         <p class="mx-2">Install dependencies for testing (NUXT test-utils, vitest, happy-dom and playwright)</p>
         <CodeBlock lang="bash" code="npm i --save-dev @nuxt/test-utils vitest @vue/test-utils happy-dom playwright-core"/>
 
-        <p class="mx-2 mt-4">Create some test files in the tests directory and make some unit tests for webpage functionality.</p>
-        <p class="mx-2">Below is a snippet from
+        <p class="mx-2 mt-4">Create some test files in the tests directory and make some unit tests for checking webpage functionality.</p>
+        <p class="mx-2">
+          Below is a snippet from
           <CodeSnippet code="~/tests/e2e/basic.spec.ts"/>
           with tests created using <b>Playwright</b>.
         </p>
-        <p class="mx-2">The below test gets the desktop button for the given app 'about' and then double clicks it.
+        <p class="mx-2">
+          The below test gets the desktop button for the given app 'about' and then double clicks it.
           It checks the window opens and is visible, then locates the close button before checking that the window closes and it not visible anymore.</p>
         <CodeBlock lang="TypeScript" :code="test"/>
       </div>
 
       <div class="flex flex-col gap-2 p-2 rounded-xl border border-(--gnome-border)">
         <h2 class="m-2 text-xl font-semibold">Deployment</h2>
+        <p class="mx-2">The deployment of this portfolio is automated using GitHub Actions, the NUXT documentation gives an easy to use template for this type of deployment.
+          The actions functionality comes from a YAML file created at
+          <CodeSnippet code="~/.github/workflows/deploy.yml"></CodeSnippet>
+          which has parameters for the different jobs and steps in the deployment process.
+        </p>
+        <p class="mx-2">The process consists of three main jobs: testing, building, and deploying to GitHub Pages.
+          The workflow triggers on pushes to the master branch or can be manually triggered via workflow dispatch.</p>
+        <p class="mx-2">Test - All tests are run using Vitest and Playwright to ensure everything is working correctly on the website.</p>
+        <p class="mx-2">Build - If tests pass, the build job creates a production build using Nuxt with the GitHub Pages preset in an Ubuntu environment.</p>
+        <p class="mx-2">Deploy - Finally, the deploy job uploads the built site to GitHub Pages.</p>
+        <p class="mx-2">That's it! The website is live, hosted by GitHub with a cloudflare DNS record pointing to GitHub so it can be accessed via a domain!</p>
       </div>
     </div>
   </div>

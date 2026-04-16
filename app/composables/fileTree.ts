@@ -4,6 +4,25 @@ const baseGitHubUrl = 'https://github.com/Lucas1727/portfolio/blob/master'
 
 export const fileTreeItems = ref<TreeItem[]>([
     {
+        label: '.github/',
+        defaultExpanded: false,
+        children: [
+            {
+                label: 'workflows/',
+                defaultExpanded: true,
+                children: [
+                    {
+                        label: 'deploy.yml',
+                        icon: 'i-vscode-icons-file-type-yaml',
+                        onSelect() {
+                            window.open(`${baseGitHubUrl}/.github/workflows/deploy.yml`, '_blank')?.focus()
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
         label: 'app/',
         defaultExpanded: true,
         children: [
